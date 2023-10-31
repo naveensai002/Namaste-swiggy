@@ -21,9 +21,8 @@ import { action as RegisterAction } from './pages/Register';
 import { action as LoginAction } from './pages/Login';
 
 import store from './store/store';
-import Landing from './pages/Landing';
-import Error from './pages/Error';
 
+import { Landing, Error } from './pages';
 import { auth } from './firebase';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

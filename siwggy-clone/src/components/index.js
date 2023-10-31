@@ -6,3 +6,7 @@ export { default as Footer } from './Footer';
 export { default as Header } from './Header';
 export { default as InstaMart } from './InstaMart';
 export { default as Loading } from './Loading';
+export { default as Hero } from './Hero';
+export { default as MainContainer } from './MainContainer';
+export { default as RestaurantCard } from './RestaurantCard';
+export { default as SectionTitle } from './SectionTitle';

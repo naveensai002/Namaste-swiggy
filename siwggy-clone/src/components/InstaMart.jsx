@@ -1,7 +1,13 @@
 import React from 'react';
 
+import SectionTitle from './SectionTitle';
+
 const InstaMart = () => {
-  return <div>InstaMart</div>;
+  return (
+    <>
+      <SectionTitle text='Best Restaurant' />
+    </>
+  );
 };
 
 export default InstaMart;
