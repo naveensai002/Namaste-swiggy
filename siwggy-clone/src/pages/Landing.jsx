@@ -12,7 +12,7 @@ const filterQuery = {
 
 export const loader = (queryClient) => async () => {
   const response = await queryClient.ensureQueryData(filterQuery);
-  // console.log(response);
+  console.log(response);
   const filterData = response.data.cards[4].card.card.sortConfigs;
   const nextFilterData = response.data.cards[4].card.card.facetList;
   return { filterData, nextFilterData };
