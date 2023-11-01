@@ -5,12 +5,12 @@ import { redirect } from 'react-router-dom';
 import { toast } from 'sonner';
 
 const themes = {
-  light: 'light',
+  autumn: 'autumn',
   dark: 'dark',
 };
 
 const getThemeFromLS = () => {
-  const theme = localStorage.getItem('theme') || themes.dark;
+  const theme = localStorage.getItem('theme') || themes.autumn;
   document.documentElement.setAttribute('data-theme', theme);
   return theme;
 };
@@ -29,7 +29,7 @@ const userSlice = createSlice({
   initialState: initialState,
   reducers: {
     loginUser: (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       const user = action.payload;
       state.user = user;
       localStorage.setItem('user', JSON.stringify(user));
@@ -42,8 +42,8 @@ const userSlice = createSlice({
       toast.success('logged out successfully');
     },
     themeToggle: (state) => {
-      const { light, dark } = themes;
-      state.theme = state.theme === 'dark' ? 'light' : 'dark';
+      const { autumn, dark } = themes;
+      state.theme = state.theme === 'dark' ? 'autumn' : 'dark';
       document.documentElement.setAttribute('data-theme', state.theme);
       localStorage.setItem('theme', state.theme);
       toast.success(`theme set to ${state.theme}`);

@@ -28,6 +28,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from './features/user/userSlice';
 
+import { loader as landingLoader } from './pages/Landing';
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -42,7 +44,12 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     errorElement: <Error />,
     children: [
-      { index: true, element: <Landing />, errorElement: <ErrorElement /> },
+      {
+        index: true,
+        element: <Landing />,
+        errorElement: <ErrorElement />,
+        loader: landingLoader(queryClient),
+      },
       {
         path: '/cart',
         element: <Cart />,
@@ -75,7 +82,7 @@ const router = createBrowserRouter([
 function App() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  console.log(user);
+  // console.log(user);
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {

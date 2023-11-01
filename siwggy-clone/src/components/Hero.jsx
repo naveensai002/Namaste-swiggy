@@ -73,8 +73,8 @@ export default function Hero() {
       {loading ? (
         <Loading />
       ) : (
-        <div className='pb-12 '>
-          <div className='flex flex-row items-center justify-between'>
+        <div className='pb-12 pl-4 ml-12 mr-12 '>
+          <div className='flex flex-row items-center justify-between ml-14'>
             <SectionTitle text='Best offers for you' />
             {/* button */}
             {/* <div className='flex items-center gap-x-6 mr-8 text-3xl'>
