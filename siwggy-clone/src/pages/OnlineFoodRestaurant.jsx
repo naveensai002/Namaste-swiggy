@@ -33,7 +33,9 @@ export default function OnlineFoodRestaurant() {
       {/* title */}
       <SectionTitle text='Restaurants with online food delivery at your location' />
       {/* filter */}
-      <Filters />
+      <Filters items={items} />
+      {/* on the basis of filter we will filter the items state items items.filter((item) =>item.avgRating >4.5
+      if no item then we will show some text and clear filter option */}
       {/* card */}
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
         {items &&

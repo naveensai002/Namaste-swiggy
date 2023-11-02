@@ -29,6 +29,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from './features/user/userSlice';
 
 import { loader as landingLoader } from './pages/Landing';
+import { loader as appLayoutLoader } from './components/AppLayout';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
     path: '/',
     element: <AppLayout />,
     errorElement: <Error />,
+    loader: appLayoutLoader(queryClient),
     children: [
       {
         index: true,

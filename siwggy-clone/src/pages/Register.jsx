@@ -18,8 +18,9 @@ export const action =
   async ({ request }) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
-    console.log(data.username);
+    // console.log(data);
     const { username, email, password } = data;
+    // console.log('register', username);
     try {
       const response = await createUserWithEmailAndPassword(
         auth,
@@ -32,10 +33,11 @@ export const action =
             displayName: username,
           })
         );
-      console.log(response?.user?.providerData);
+
+      // console.log(response?.user?.providerData);
       store.dispatch(loginUser(response?.user?.providerData));
 
-      toast.success('Registered Successfully');
+      toast.success(`Registration successful for ${username}`);
       return redirect('/login');
     } catch (error) {
       const errorMessage =
@@ -55,7 +57,7 @@ const Register = () => {
 
           <FormInput
             label='Username'
-            type='text'
+            type='username'
             placeholder='username'
             name='username'
           />

@@ -8,6 +8,20 @@ import Loading from './Loading';
 import { Outlet } from 'react-router-dom';
 import { useNavigation } from 'react-router-dom';
 
+import fetchData from '../utils/api';
+
+const fetchCities = {
+  queryKey: ['cities'],
+  queryFn: () => fetchData(),
+};
+
+export const loader = (queryClient) => async () => {
+  const response = await queryClient.ensureQueryData(fetchCities);
+  // console.log(response?.data?.cards[11]?.card?.card?.cities);
+  const cities = response?.data?.cards[11]?.card?.card?.cities;
+  return { cities };
+};
+
 const AppLayout = () => {
   const navigation = useNavigation();
 

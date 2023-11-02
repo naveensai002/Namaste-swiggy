@@ -11,7 +11,9 @@ export default function Filters() {
   const handleChange = (ev) => {
     setSelectedFilter(ev.target.value);
   };
-
+  const handleFilterChange = (e) => {
+    console.log(e.target.textContent);
+  };
   return (
     <div className='flex flex-row gap-x-4 pt-6 items-center '>
       <button className='btn btn-ghost btn-md rounded-full p-2 shadow-md '>
@@ -47,7 +49,11 @@ export default function Filters() {
           // console.log(nfData.facetInfo[0]);
           const { label, id } = nfData.facetInfo[0];
           return (
-            <button className='btn shadow-md rounded-full p-2' key={id}>
+            <button
+              onClick={handleFilterChange}
+              className='btn shadow-md rounded-full p-2'
+              key={id}
+            >
               {label}
             </button>
           );

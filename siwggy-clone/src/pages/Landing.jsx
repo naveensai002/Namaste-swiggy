@@ -1,8 +1,13 @@
 import React from 'react';
-import { Hero, MainContainer } from '../components';
+import { Hero } from '../components';
 import MindPage from './MindPage';
 import TopRestaurantChain from './TopRestaurantChain';
 import OnlineFoodRestaurant from './OnlineFoodRestaurant';
+import BestPlaces from './BestPlaces';
+import BestCuisineNear from './BestCuisineNear';
+import ExploreResNearMe from './ExploreResNearMe';
+import Store from './Store';
+
 import fetchData from '../utils/api';
 
 const filterQuery = {
@@ -12,10 +17,24 @@ const filterQuery = {
 
 export const loader = (queryClient) => async () => {
   const response = await queryClient.ensureQueryData(filterQuery);
-  console.log(response);
+  // console.log(response);
   const filterData = response.data.cards[4].card.card.sortConfigs;
   const nextFilterData = response.data.cards[4].card.card.facetList;
-  return { filterData, nextFilterData };
+  const bestPlacesData = response.data.cards[7].card.card;
+  const bestCuisineNearMe = response.data.cards[8].card.card.brands;
+  const exploreEveryResNearMe = response.data.cards[9].card.card.brands;
+  const downloadLinks = response.data.cards[10].card.card;
+  const citiesData = response.data.cards[11].card.card.cities;
+  // console.log(citiesData);
+  return {
+    filterData,
+    nextFilterData,
+    bestPlacesData,
+    bestCuisineNearMe,
+    exploreEveryResNearMe,
+    downloadLinks,
+    citiesData,
+  };
 };
 
 export default function Landing() {
@@ -25,7 +44,10 @@ export default function Landing() {
       <MindPage />
       <TopRestaurantChain />
       <OnlineFoodRestaurant />
-      <MainContainer />
+      <BestPlaces />
+      <BestCuisineNear />
+      <ExploreResNearMe />
+      <Store />
     </div>
   );
 }

@@ -15,18 +15,28 @@ export const action =
   async ({ request }) => {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
+
     const { username, email, password } = data;
     try {
-      const response = await signInWithEmailAndPassword(auth, email, password)
-        .then(signInWithEmailAndPassword(auth, email, password))
-        .then(
-          updateProfile(auth.currentUser, {
-            displayName: username,
-          })
-        );
-
+      const response = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      ).then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        // console.log(user);
+        // ...
+      });
+      // .then(signInWithEmailAndPassword(auth, email, password))
+      // .then(
+      //   updateProfile(auth.currentUser, {
+      //     displayName: username,
+      //   })
+      // );
+      // console.log(response);
       store.dispatch(loginUser(response?.user?.providerData));
-      toast.success('Login successful');
+      toast.success(`Welcome to the Swiggy`);
 
       return redirect('/');
     } catch (error) {
@@ -48,9 +58,9 @@ const Login = () => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential.accessToken;
         const user = result.user;
-        console.log(user);
+        // console.log(result);
         dispatch(loginUser(user?.providerData));
-        toast.success('login successfull');
+        toast.success(`welcome to the swiggy`);
         return navigate('/');
       })
       .catch((error) => {
@@ -70,7 +80,7 @@ const Login = () => {
           <FormInput
             label='Email'
             type='email'
-            name='identifier'
+            name='email'
             placeholder='enter your email'
           />
           <FormInput
