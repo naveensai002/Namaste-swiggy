@@ -17,25 +17,39 @@ export default function Hero() {
   const [loading, setLoading] = useState(true);
   const carouselContainer = useRef();
 
-  const navigation = (dir) => {
-    const container = carouselContainer.current;
+  const container = carouselContainer.current;
 
-    const rightBtn = document.getElementsByClassName('carouselRighttNav');
+  // const btnLeftHandle = () => {
+  //   const scrollAmount = container.scrollLeft - (container.offsetWidth + 20);
+  //   console.log(scrollAmount);
+  //   container.scrollTo({
+  //     left: scrollAmount,
+  //     behavior: 'smooth',
+  //   });
+  // };
+  // const btnRightHandle = () => {
+  //   // console.log(width);
+  //   const scrollAmount = container.scrollLeft + (container.offsetWidth + 20);
+  //   console.log(scrollAmount);
+  //   container.scrollTo({
+  //     left: scrollAmount,
+  //     behavior: 'smooth',
+  //   });
+  // };
+  // const navigation = (dir) => {
+  //   const container = carouselContainer.current;
 
-    rightBtn.addEventListener('click', () => {
-      container.scrollLeft -= 900;
-    });
-    // console.log(container.scrollLeft);
-    const scrollAmount =
-      dir === 'left'
-        ? container.scrollLeft - (container.offsetWidth + 400)
-        : container.scrollLeft + (container.offsetWidth + 400);
+  //   // console.log(container.scrollLeft);
+  //   const scrollAmount =
+  //     dir === 'left'
+  //       ? container.scrollLeft - (container.offsetWidth + 400)
+  //       : container.scrollLeft + (container.offsetWidth + 400);
 
-    container.scrollTo({
-      left: scrollAmount,
-      behavior: 'smooth',
-    });
-  };
+  //   container.scrollTo({
+  //     left: scrollAmount,
+  //     behavior: 'smooth',
+  //   });
+  // };
 
   const getBestOfferData = async () => {
     const res = await fetchData();
@@ -73,22 +87,22 @@ export default function Hero() {
       {loading ? (
         <Loading />
       ) : (
-        <div className='pb-12 pl-4 ml-12 mr-12 '>
+        <div className=' pb-12 pl-4 ml-12 mr-12 '>
           <div className='flex flex-row items-center justify-between ml-14'>
             <SectionTitle text='Best offers for you' />
             {/* button */}
             {/* <div className='flex items-center gap-x-6 mr-8 text-3xl'>
               <BsFillArrowLeftCircleFill
-                className='carouselLeftNav arrow'
-                onClick={() => navigation('left')}
+                className='carouselLeftNav arrow cursor-pointer'
+                onClick={btnLeftHandle}
               />
               <BsFillArrowRightCircleFill
                 className='carouselRighttNav arrow'
-                onClick={() => navigation('right')}
+                onClick={btnRightHandle}
               />
             </div> */}
           </div>
-          <div className=' gap-4 ' ref={carouselContainer}>
+          <div className=' gap-4 carousel-container'>
             <Carousel
               autoPlay={true}
               autoPlaySpeed={1000}
@@ -111,7 +125,10 @@ export default function Hero() {
 
                   return (
                     <div className='mt-12 ml-8 p-6 ' key={item.id}>
-                      <div className=' card card-side max-w-[38rem] bg-base-300 shadow-xl  '>
+                      <div
+                        className=' card card-side max-w-[38rem] bg-base-300 shadow-xl  '
+                        ref={carouselContainer}
+                      >
                         <figure>
                           <img
                             src={imgCaro + imageId}

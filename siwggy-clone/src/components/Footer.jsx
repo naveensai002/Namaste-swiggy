@@ -7,7 +7,7 @@ import { useLoaderData } from 'react-router-dom';
 
 export default function Footer() {
   const { cities } = useLoaderData();
-  const [citi, setCiti] = useState(cities.slice(6, cities.length - 1));
+  const [citi, setCiti] = useState(cities?.slice(6, cities?.length - 1));
   const [showFullCities, setShowFullCities] = useState(false);
 
   const handleShowFullCities = useCallback(() => {

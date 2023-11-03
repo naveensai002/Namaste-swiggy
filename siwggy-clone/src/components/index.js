@@ -10,3 +10,5 @@ export { default as Hero } from './Hero';
 export { default as RestaurantCard } from './RestaurantCard';
 export { default as SectionTitle } from './SectionTitle';
 export { default as Filters } from './Filters';
+export { default as SinglePageLoaded } from './SinglePageLoaded';
+export { default as TopPick } from './TopPick';

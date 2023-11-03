@@ -15,7 +15,7 @@ const Header = () => {
    * Login /Register
    */
   return (
-    <div className='flex flex-row items-center gap-x-6 bg-base-100 text-white justify-end p-1'>
+    <div className=' flex flex-row items-center gap-x-6 bg-base-100 text-white justify-end p-1'>
       {user ? (
         <div className='flex flex-row gap-4 font-semibold text-sm items-center text-rose-500'>
           <h3>Hello</h3>

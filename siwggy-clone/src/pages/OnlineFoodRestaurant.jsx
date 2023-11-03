@@ -6,42 +6,45 @@ import { Image_CDN_Url } from '../utils/constant';
 
 import { MdStars } from 'react-icons/md';
 import { TiLocation } from 'react-icons/ti';
+import { Link, useLoaderData } from 'react-router-dom';
 
 export default function OnlineFoodRestaurant() {
-  const [items, setItems] = useState([]);
+  // const [items, setItems] = useState([]);
+  const { onlineFoodResData } = useLoaderData();
+  // console.log(onlineFoodResData);
+  // const onlineFoodDeliveryRes = async () => {
+  //   const response = await fetchData();
+  //   setItems(
+  //     response.data.cards[5].card.card.gridElements.infoWithStyle.restaurants
+  //   );
+  //   console.log(items);
+  //   //filter data response.data.cards[4].card.card.sortConfigs
+  //   //key,title,selected,
 
-  const onlineFoodDeliveryRes = async () => {
-    const response = await fetchData();
-    setItems(
-      response.data.cards[5].card.card.gridElements.infoWithStyle.restaurants
-    );
-    // console.log(
-    //   response.data.cards[5].card.card.gridElements.infoWithStyle.restaurants
-    // );
-    //filter data response.data.cards[4].card.card.sortConfigs
-    //key,title,selected,
+  //   //restaurant response.data.cards[5].card.card.gridElements.infoWithStyle.restaurants
+  // };
 
-    //restaurant response.data.cards[5].card.card.gridElements.infoWithStyle.restaurants
-  };
-
-  useEffect(() => {
-    onlineFoodDeliveryRes();
-  }, []);
+  // useEffect(() => {
+  //   onlineFoodDeliveryRes();
+  // }, []);
 
   return (
-    <div className='pl-14 ml-14 mb-8'>
+    <div className='pl-14 ml-14 mb-8 cursor-pointer'>
       {/* title */}
       <SectionTitle text='Restaurants with online food delivery at your location' />
       {/* filter */}
-      <Filters items={items} />
-      {/* on the basis of filter we will filter the items state items items.filter((item) =>item.avgRating >4.5
-      if no item then we will show some text and clear filter option */}
-      {/* card */}
+      <Filters items={onlineFoodResData} />
+      {/* filtering will be done on the basis of id  */}
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
-        {items &&
-          items.map((item) => {
-            const { info } = item;
+        {onlineFoodResData &&
+          onlineFoodResData?.map((item) => {
+            // console.log(item);
             const {
+              info,
+              cta: { link },
+            } = item;
+            const {
+              id,
               avgRating,
               costForTwo,
               cuisines,
@@ -61,7 +64,7 @@ export default function OnlineFoodRestaurant() {
               'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/';
             // console.log(action);
             return (
-              <div key={item.id} className=' '>
+              <Link key={id} to={`/products/${id}`}>
                 <div className='mt-12 ml-8 p-6 rounded-md'>
                   <div className=' relative card card-side w-64 bg-base-300 shadow-xl rounded-md  '>
                     <figure>
@@ -104,7 +107,7 @@ export default function OnlineFoodRestaurant() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
       </div>

@@ -15,8 +15,8 @@ export default function TopRestaurantChain() {
   const getTopRestaurant = async () => {
     const response = await fetchData();
     setItems(
-      response.data.cards[2]?.card?.card?.gridElements?.infoWithStyle
-        .restaurants
+      response?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
     );
     // console.log(
     //   response.data.cards[2]?.card?.card?.gridElements?.infoWithStyle
@@ -64,7 +64,7 @@ export default function TopRestaurantChain() {
           itemClass='carousel-item-padding-40-px pb-8 '
         >
           {items &&
-            items.map((item) => {
+            items?.map((item) => {
               const { info } = item;
               const {
                 avgRating,
@@ -85,7 +85,7 @@ export default function TopRestaurantChain() {
                 'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/';
               // console.log(action);
               return (
-                <div key={item.id} className='mt-12 ml-8 p-6  '>
+                <div key={avgRating} className='mt-12 ml-8 p-6  '>
                   <div className=' relative card card-side w-64 bg-base-300 shadow-xl rounded-md '>
                     <figure>
                       <img

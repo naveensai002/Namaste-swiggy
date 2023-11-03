@@ -7,13 +7,11 @@ export default function Filters() {
   const [selectedFilter, setSelectedFilter] = useState('');
 
   const { filterData, nextFilterData } = useLoaderData();
-
+  // console.log(nextFilterData);
   const handleChange = (ev) => {
     setSelectedFilter(ev.target.value);
   };
-  const handleFilterChange = (e) => {
-    console.log(e.target.textContent);
-  };
+  const handleFilterChange = (e) => {};
   return (
     <div className='flex flex-row gap-x-4 pt-6 items-center '>
       <button className='btn btn-ghost btn-md rounded-full p-2 shadow-md '>

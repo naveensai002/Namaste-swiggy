@@ -21,6 +21,8 @@ export const loader = (queryClient) => async () => {
   const filterData = response.data.cards[4].card.card.sortConfigs;
   const nextFilterData = response.data.cards[4].card.card.facetList;
   const bestPlacesData = response.data.cards[7].card.card;
+  const onlineFoodResData =
+    response.data.cards[5].card.card.gridElements.infoWithStyle.restaurants;
   const bestCuisineNearMe = response.data.cards[8].card.card.brands;
   const exploreEveryResNearMe = response.data.cards[9].card.card.brands;
   const downloadLinks = response.data.cards[10].card.card;
@@ -34,6 +36,7 @@ export const loader = (queryClient) => async () => {
     exploreEveryResNearMe,
     downloadLinks,
     citiesData,
+    onlineFoodResData,
   };
 };
 

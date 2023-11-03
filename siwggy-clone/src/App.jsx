@@ -22,7 +22,7 @@ import { action as LoginAction } from './pages/Login';
 
 import store from './store/store';
 
-import { Landing, Error } from './pages';
+import { Landing, Error, SingleProductPage } from './pages';
 import { auth } from './firebase';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,6 +30,7 @@ import { loginUser } from './features/user/userSlice';
 
 import { loader as landingLoader } from './pages/Landing';
 import { loader as appLayoutLoader } from './components/AppLayout';
+import { loader as SingleProductLoader } from './pages/SingleProductPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -51,6 +52,12 @@ const router = createBrowserRouter([
         element: <Landing />,
         errorElement: <ErrorElement />,
         loader: landingLoader(queryClient),
+      },
+      {
+        path: '/products/:id',
+        element: <SingleProductPage />,
+        errorElement: <ErrorElement />,
+        loader: SingleProductLoader(queryClient),
       },
       {
         path: '/cart',
