@@ -46,7 +46,8 @@ export default function SingleProductPage() {
   const topPicks = cards[2].groupedCard.cardGroupMap.REGULAR.cards;
   // console.log(topPicks);
   const singlePageData = topPicks[2].card.card.itemCards;
-  // console.log(topPicks[2].card.card.itemCards);
+  // console.log(topPicks[3].card.card.itemCards);
+
   //data : console.log(topPicks);
 
   const {
@@ -187,7 +188,7 @@ export default function SingleProductPage() {
 
       {topPicks[1]?.card?.card.carousel && <TopPick topPicks={topPicks} />}
       {/* SinglePageLoaded */}
-      <SinglePageLoaded singlePageData={singlePageData} />
+      {singlePageData && <SinglePageLoaded singlePageData={singlePageData} />}
     </>
   );
 }

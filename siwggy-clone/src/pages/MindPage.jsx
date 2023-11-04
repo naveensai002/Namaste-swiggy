@@ -65,12 +65,15 @@ export default function MindPage() {
                 'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/';
               // console.log(action);
               return (
-                <div key={item.id} className='mt-12 ml-8 p-6 gap-1 '>
-                  <div className='card card-side w-full h-24 bg-base-300  rounded-md hover:-translate-y-5 hover:transition-all ease-in-out delay-150'>
+                <div
+                  key={item.id}
+                  className='mt-12 ml-8 p-6 gap-1 cursor-pointer '
+                >
+                  <div className='w-fit h-fit bg-base-300  rounded-md  hover:transition-transform ease-in duration-300 '>
                     <figure>
                       <img
                         src={imgCaro + imageId}
-                        className='h-full rounded-lg object-center  overscroll-none max-w-full'
+                        className=''
                         alt='mind-image'
                       />
                     </figure>

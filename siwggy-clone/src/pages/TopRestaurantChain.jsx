@@ -85,7 +85,7 @@ export default function TopRestaurantChain() {
                 'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/';
               // console.log(action);
               return (
-                <div key={avgRating} className='mt-12 ml-8 p-6  '>
+                <div key={avgRating} className='mt-12 ml-8 p-6 cursor-pointer '>
                   <div className=' relative card card-side w-64 bg-base-300 shadow-xl rounded-md '>
                     <figure>
                       <img
@@ -114,8 +114,9 @@ export default function TopRestaurantChain() {
                         return <p key={cuisine}>{cuisine}</p>;
                       })}
                     </p>
-                    <p className='flex gap-x-1 items-center text-sm font-bold tracking-widest pt-3'>
-                      <TiLocation /> {locality}
+                    <p className='flex gap-x-1 items-center text-sm font-bold tracking-widest pt-3 '>
+                      <TiLocation className='text-green-500 ' size={18} />{' '}
+                      {locality}
                     </p>
                   </div>
                 </div>
