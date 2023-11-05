@@ -8,6 +8,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { MdStars } from 'react-icons/md';
 import { TiLocation } from 'react-icons/ti';
+import { BiCartAdd } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 
 export default function TopRestaurantChain() {
@@ -129,6 +130,15 @@ export default function TopRestaurantChain() {
                         {locality}
                       </p>
                     </div>
+                    {/* <div className='pt-4 '>
+                      <button className='w-full flex gap-4  p-3 justify-center bg-green-400 rounded-md text-white font-thin tracking-widest'>
+                        Add to cart{' '}
+                        <BiCartAdd
+                          size={28}
+                          className='text-black hover:-translate-y-0.5'
+                        />
+                      </button>
+                    </div> */}
                   </div>
                 </Link>
               );
