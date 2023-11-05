@@ -44,11 +44,17 @@ export default function SingleProductPage() {
 
   const offers = cards[1].card.card.gridElements.infoWithStyle.offers;
   const topPicks = cards[2].groupedCard.cardGroupMap.REGULAR.cards;
-  // console.log(topPicks);
-  const singlePageData = topPicks[2].card.card.itemCards;
-  // console.log(topPicks[3].card.card.itemCards);
+  const allData = cards[2].groupedCard.cardGroupMap.REGULAR;
 
-  //data : console.log(topPicks);
+  const singlePageData = topPicks[2].card.card.itemCards;
+
+  console.log('singelPage1', singlePageData);
+
+  const singlePageData2 = allData.cards.map((item) => item.card);
+
+  const singlePageData2N = singlePageData2.map((items) => items).slice(2);
+  const itemsCardsData = singlePageData2N.map((item) => item.card.itemCards);
+  console.log('itemsCards', itemsCardsData[0]);
 
   const {
     aggregatedDiscountInfo,
@@ -185,10 +191,10 @@ export default function SingleProductPage() {
       </div>
       <div className='mr-12 pr-12  border-b border-dashed border-slate-300 ml-12 pl-12  pt-4'></div>
       {/*  TOP PICKS */}
-
       {topPicks[1]?.card?.card.carousel && <TopPick topPicks={topPicks} />}
       {/* SinglePageLoaded */}
-      {singlePageData && <SinglePageLoaded singlePageData={singlePageData} />}
+      {<SinglePageLoaded singlePageData={singlePageData} />}
+      {<SinglePageLoaded singlePageData={itemsCardsData[0]} />}
     </>
   );
 }

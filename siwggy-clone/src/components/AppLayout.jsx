@@ -34,7 +34,7 @@ const AppLayout = () => {
       {loading ? (
         <Loading />
       ) : (
-        <section className='align-element py-12'>
+        <section className='align-element '>
           <Outlet />
         </section>
       )}

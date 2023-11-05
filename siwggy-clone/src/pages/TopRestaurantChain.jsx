@@ -8,6 +8,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { MdStars } from 'react-icons/md';
 import { TiLocation } from 'react-icons/ti';
+import { Link } from 'react-router-dom';
 
 export default function TopRestaurantChain() {
   const [items, setItems] = useState([]);
@@ -67,6 +68,7 @@ export default function TopRestaurantChain() {
             items?.map((item) => {
               const { info } = item;
               const {
+                id,
                 avgRating,
                 costForTwo,
                 cuisines,
@@ -85,41 +87,50 @@ export default function TopRestaurantChain() {
                 'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/';
               // console.log(action);
               return (
-                <div key={avgRating} className='mt-12 ml-8 p-6 cursor-pointer '>
-                  <div className=' relative card card-side w-64 bg-base-300 shadow-xl rounded-md '>
-                    <figure>
-                      <img
-                        src={Image_CDN_Url + cloudinaryImageId}
-                        className='h-full rounded-lg object-cover  overscroll-none max-w-full'
-                        alt='mind-image'
-                      />
-                    </figure>
-                    <div className='card-body absolute bottom-0 bg-gradient-to-t from-black w-full rounded-md'>
-                      <h3 className='text-white font-bold tracking-widest  '>
-                        {header + subHeader}
-                      </h3>
+                <Link key={id} to={`/products/${id}`}>
+                  <div
+                    key={avgRating}
+                    className='mt-12 ml-8 p-6 cursor-pointer '
+                  >
+                    <div className=' relative card card-side w-64 bg-base-300 shadow-xl rounded-md '>
+                      <figure>
+                        <img
+                          src={Image_CDN_Url + cloudinaryImageId}
+                          className='h-full rounded-lg object-cover  overscroll-none max-w-full'
+                          alt='mind-image'
+                        />
+                      </figure>
+                      <div className='card-body absolute bottom-0 bg-gradient-to-t from-black w-full rounded-md'>
+                        <h3 className='text-white font-bold tracking-widest  '>
+                          {header + subHeader}
+                        </h3>
+                      </div>
+                    </div>
+                    <div className='mt-4'>
+                      <h2 className='font-semibold tracking-wider text-xl'>
+                        {name}
+                      </h2>
+                      <div className='pt-2 flex gap-x-2 text-md items-center font-bold tracking-wider'>
+                        <p className='text-green-500'>
+                          {<MdStars size={22} />}
+                        </p>
+                        <span>{avgRating}</span>
+                        <p className='flex items-center'>
+                          . {deliveryTime} mins
+                        </p>
+                      </div>
+                      <p className='flex gap-x-2 tracking-tighter pt-1 overflow-hidden'>
+                        {cuisines.map((cuisine) => {
+                          return <p key={cuisine}>{cuisine}</p>;
+                        })}
+                      </p>
+                      <p className='flex gap-x-1 items-center text-sm font-bold tracking-widest pt-3 '>
+                        <TiLocation className='text-green-500 ' size={18} />{' '}
+                        {locality}
+                      </p>
                     </div>
                   </div>
-                  <div className='mt-4'>
-                    <h2 className='font-semibold tracking-wider text-xl'>
-                      {name}
-                    </h2>
-                    <div className='pt-2 flex gap-x-2 text-md items-center font-bold tracking-wider'>
-                      <p className='text-green-500'>{<MdStars size={22} />}</p>
-                      <span>{avgRating}</span>
-                      <p className='flex items-center'>. {deliveryTime} mins</p>
-                    </div>
-                    <p className='flex gap-x-2 tracking-tighter pt-1 overflow-hidden'>
-                      {cuisines.map((cuisine) => {
-                        return <p key={cuisine}>{cuisine}</p>;
-                      })}
-                    </p>
-                    <p className='flex gap-x-1 items-center text-sm font-bold tracking-widest pt-3 '>
-                      <TiLocation className='text-green-500 ' size={18} />{' '}
-                      {locality}
-                    </p>
-                  </div>
-                </div>
+                </Link>
               );
             })}
         </Carousel>

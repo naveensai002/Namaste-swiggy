@@ -16,13 +16,13 @@ export default function Footer() {
   // console.log(showFullCities);
   // console.log(citi);
   return (
-    <div>
-      <div className='bg-slate-900 pb-12 text-slate-300 grid grid-cols-2 md:grid-col-3 lg:grid-cols-4 cursor-pointer '>
-        <div className='ml-6 pt-2 '>
+    <div className=''>
+      <div className='bg-slate-900 pb-12 text-slate-300 grid grid-cols-2 md:grid-col-3 lg:grid-cols-4 cursor-pointer pt-6 '>
+        <div className='ml-6 pt-2 leading-8'>
           <h3 className='flex items-center  mb-4 gap-x-2 font-semibold text-xl tracking-widest'>
             <span>{<SiSwiggy size={24} />}</span>Swiggy
           </h3>
-          <span className='flex gap-x-2 link link-hover'>
+          <span className='flex gap-x-2 link link-hover mt-2'>
             {<CgCopyright size={24} />} 2023 Bundl
           </span>
           <p className='tracking-wide link link-hover'>
@@ -31,7 +31,7 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className='flex flex-col gap-y-3 text-md pt-2'>
+        <div className='flex flex-col gap-y-3 text-md pt-2 leading-6'>
           <h3 className='font-bold text-xl tracking-wider link link-hover'>
             Company
           </h3>

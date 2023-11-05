@@ -4,6 +4,7 @@ import { NavLink, Link } from 'react-router-dom';
 
 import { BsCart3, BsMoonFill, BsSunFill } from 'react-icons/bs';
 import { FaBarsStaggered } from 'react-icons/fa6';
+import { IoFastFoodSharp } from 'react-icons/io5';
 
 import NavLinks from './NavLinks';
 import { useDispatch } from 'react-redux';
@@ -20,13 +21,13 @@ const Navbar = () => {
   };
 
   return (
-    <div className='navbar bg-base-200 flex flex-row justify-between '>
+    <div className='navbar bg-base-200 flex flex-row justify-between sticky top-0 z-10'>
       <div className='navbar-start'>
-        <NavLink to='/'>
-          <h3 className='hidden lg:flex btn text-xl items-center font-bold'>
-            Apna
-            <span className='text-rose-500'>Food</span>
+        <NavLink to='/' className='flex'>
+          <h3 className='hidden lg:flex btn text-2xl items-center font-bold tracking-widest font-mono text-rose-700'>
+            Foodio
           </h3>
+          <IoFastFoodSharp size={42} />
         </NavLink>
 
         <div className='dropdown'>

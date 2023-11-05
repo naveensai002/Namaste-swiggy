@@ -16,19 +16,19 @@ export default function SinglePageLoaded(singlePageData) {
           isVeg,
           itemAttribute,
           name,
-          price,
+          defaultPrice,
           imageId,
           ratings,
         } = data.card.info;
-
+        console.log(defaultPrice);
         const imgCaro =
           'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_1024/';
 
         return (
-          <div key={id} className='pl-32 pr-32 w-3/4 '>
+          <div key={id} className='pl-32 pr-32 w-3/4 mb-10'>
             <div className='grid mt-8 card card-side bg-slate-100  shadow-xl '>
-              <h2 className=' rounded-md p-1 tracking-widest  ml-32 font-bold capitalize mt-6 bg-transparent btn btn-md w-fit'>
-                {category.slice(0, 10)}
+              <h2 className=' rounded-md p-1 tracking-widest  ml-32 font-bold capitalize mt-6 bg-transparent btn btn-md w-fit text-rose-400 border-none outline-none'>
+                {category}
               </h2>
               {/* green dot */}
               <div className='grid grid-cols-2 place-items-center pb-6 tracking-wider pt-2 font-semibold'>
@@ -39,7 +39,7 @@ export default function SinglePageLoaded(singlePageData) {
                     <span>
                       <HiCurrencyRupee size={22} />
                     </span>
-                    {price / 100}
+                    {defaultPrice / 100}
                   </p>
                   <p className=''>
                     {`${inStock >= 1 ? 'In stock ' : 'Out of stock'}`}
@@ -49,16 +49,16 @@ export default function SinglePageLoaded(singlePageData) {
                     </span>
                   </p>
                 </div>
-                <div className='cursor-pointer'>
+                <div className='cursor-pointer relative'>
                   <figure className='rounded-md '>
                     <img
                       src={imgCaro + imageId}
-                      className='h-32  w-32 rounded-md absolute hover:opacity-50'
+                      className='h-32  w-32 rounded-md  hover:opacity-50'
                     />
-                    <p className='uppercase relative bg-slate-100 p-1 opacity-50 hover:opacity-100 hover:bg-yellow-400 tracking-wider '>
-                      Add
-                    </p>
                   </figure>
+                  <p className='uppercase absolute top-0 right-0 bg-rose-500 rounded-bl-md  p-1 opacity-1 hover:opacity-100 hover:bg-rose-400 tracking-wider '>
+                    Add
+                  </p>
                 </div>
               </div>
             </div>

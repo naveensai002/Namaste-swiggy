@@ -42,7 +42,7 @@ export const loader = (queryClient) => async () => {
 
 export default function Landing() {
   return (
-    <div>
+    <div className='py-4'>
       <Hero />
       <MindPage />
       <TopRestaurantChain />
