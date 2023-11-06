@@ -1,7 +1,9 @@
 import React from 'react';
 import { getSpecificSearchResultData } from '../utils/api';
 import { useLoaderData } from 'react-router-dom';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useNavigation } from 'react-router-dom';
+
+import Loading from './Loading';
 
 import { AiOutlineLeft } from 'react-icons/ai';
 import { HiCurrencyRupee } from 'react-icons/hi2';
@@ -27,9 +29,12 @@ export const loader =
 
 export default function SearchResultsPage() {
   const navigate = useNavigate();
+  const navigation = useNavigation();
   const { id } = useParams();
   const data = useLoaderData();
-  // console.log(data);
+
+  const isLoading = navigation.state === 'laoding';
+  const isSubmitting = navigation.state === 'submitting';
 
   const imgCaro =
     '	https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/';
@@ -40,7 +45,7 @@ export default function SearchResultsPage() {
       <div className='w-3/4 p-4 pl-32'>
         <input
           type='search'
-          className=' w-3/4 p-3 relative rounded-md border border-yellow-400 outline-none text-md text-center tracking-widest focus:bg-slate-200'
+          className='cursor-text w-3/4 p-3 relative rounded-md border border-yellow-400 outline-none text-md text-center tracking-widest focus:bg-slate-200'
           placeholder='Search for restaurants and food'
           defaultValue={id}
         />
@@ -62,73 +67,81 @@ export default function SearchResultsPage() {
       </div>
       {/* end of buttons */}
       {/* main component starts here */}
-      <div className='grid text-black grid-cols-2 place-items-center gap-x-10 bg-slate-300 rounded-md  '>
-        {data &&
-          data.slice(1).map((item) => {
-            const { info, restaurant } = item.card.card;
-            console.log(info);
-            const {
-              category,
-              id,
-              imageId,
-              inStock,
-              isVeg,
-              name: dishName,
-              price,
-              ratings,
-            } = info;
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className='grid text-black grid-cols-2 place-items-center gap-x-10 bg-slate-300 rounded-md  '>
+          {data &&
+            data.slice(1).map((item) => {
+              const { info, restaurant } = item.card.card;
+              console.log(info);
+              const {
+                category,
+                id,
+                imageId,
+                inStock,
+                isVeg,
+                name: dishName,
+                price,
+                ratings,
+              } = info;
 
-            const {
-              name,
-              locality,
-              sla: { deliveryTime },
-            } = restaurant.info;
+              const {
+                name,
+                locality,
+                sla: { deliveryTime },
+              } = restaurant.info;
 
-            // console.log('info', ratings);
+              // console.log('info', ratings);
 
-            return (
-              <div key={id} className='flex flex-col  p-3 w-full pt-6'>
-                <div className='mb-4 grid grid-cols-2 gap-y-4 bg-white  p-2 rounded-md '>
-                  <div>
-                    <h3 className='text-semibold tracking-widest'>{name}</h3>
-                    <p className='flex gap-x-2 items-center tracking-widest'>
-                      {ratings?.aggregatedRating?.rating || 4.1}{' '}
-                      <span>
+              return (
+                <div key={id} className='flex flex-col  p-3 w-full pt-6'>
+                  <div className='mb-4 grid grid-cols-2 gap-y-4 bg-white  p-2 rounded-md '>
+                    <div>
+                      <h3 className='text-semibold tracking-widest'>{name}</h3>
+                      <p className='flex gap-x-2 items-center tracking-widest'>
+                        {ratings?.aggregatedRating?.rating || 4.1}{' '}
+                        <span>
+                          {' '}
+                          <p>.{deliveryTime} MINS</p>
+                        </span>{' '}
+                      </p>
+                    </div>
+                    {imageId && (
+                      <>
                         {' '}
-                        <p>.{deliveryTime} MINS</p>
-                      </span>{' '}
-                    </p>
-                  </div>
-                  {imageId && (
-                    <>
-                      {' '}
-                      <figure>
-                        <img
-                          src={imgCaro + imageId}
-                          alt='photo'
-                          className='h-32 rounded-lg w-full'
-                        />
-                      </figure>
-                    </>
-                  )}
+                        <figure>
+                          <img
+                            src={imgCaro + imageId}
+                            alt='photo'
+                            className='h-32 rounded-lg w-full'
+                          />
+                        </figure>
+                      </>
+                    )}
 
-                  <div className='pt-2'>
-                    <h2 className='font-thin tracking-widest'>{dishName}</h2>
-                    <p className='flex gap-x-2 ml-3 items-center font-thin'>
+                    <div className='pt-2'>
+                      <h2 className='font-thin tracking-widest'>{dishName}</h2>
+                      <p className='flex gap-x-2 ml-3 items-center font-thin'>
+                        {' '}
+                        <HiCurrencyRupee size={22} />
+                        {price / 100}
+                      </p>
+                    </div>
+                    <button
+                      disabled={isSubmitting}
+                      className='cursor-pointer tracking-widest btn btn-sm shadow-transparent rounded-lg mt-4  pr-6'
+                    >
                       {' '}
-                      <HiCurrencyRupee size={22} />
-                      {price / 100}
-                    </p>
+                      <BsFillCartPlusFill size={18} /> Add to cart
+                    </button>
                   </div>
-                  <button className=' tracking-widest btn btn-sm shadow-transparent rounded-lg mt-4  pr-6'>
-                    {' '}
-                    <BsFillCartPlusFill size={18} /> Add to cart
-                  </button>
                 </div>
-              </div>
-            );
-          })}
-      </div>
+              );
+            })}
+        </div>
+      )}
+
       {/* main component ends here */}
     </div>
   );
