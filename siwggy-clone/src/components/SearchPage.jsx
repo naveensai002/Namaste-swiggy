@@ -1,24 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { CgSearch } from 'react-icons/cg';
-import { getSearchPageData } from '../utils/api';
+import { getSearchPageData, getSearchData } from '../utils/api';
 import { useNavigation } from 'react-router-dom';
+import SearchSuggestions from './SearchSuggestions';
 
 export default function SearchPage() {
   const [resultData, setResultData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [queryData, setQueryData] = useState([]);
   const navigation = useNavigation();
 
   const isLoading = navigation.state === 'loading';
 
   const fetchResults = async () => {
     const res = await getSearchPageData();
-    const data = res.data.data;
-    setResultData(data.cards);
+    const data = res?.data?.data;
+    setResultData(data?.cards);
     // console.log(resultData);
+  };
+  const searchData = async (searchQuery) => {
+    const res = await getSearchData(searchQuery);
+    // console.log(res);
+    setQueryData(res?.data?.data);
   };
 
   useEffect(() => {
-    fetchResults();
-  }, []);
+    const timer = setTimeout(() => {
+      fetchResults();
+      searchData(searchTerm);
+    }, [2000]);
+
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
+
   const imgCaro =
     'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/';
 
@@ -27,6 +41,8 @@ export default function SearchPage() {
       <div className='grid place-items-center p-4 '>
         <input
           type='search'
+          value={searchTerm}
+          onChange={(ev) => setSearchTerm(ev.target.value)}
           className=' w-3/4 p-3 relative rounded-md border border-yellow-400 outline-none'
           placeholder='Search for restaurants and food'
         />
@@ -34,12 +50,11 @@ export default function SearchPage() {
       </div>
       <div className='pt-10'>
         {resultData.slice(1).map((data) => {
-          // console.log(data.card.card);
           const { header, id, imageGridCards } = data?.card?.card;
           const { info } = imageGridCards;
           return (
             <div key={id} className='mb-8 pl-32'>
-              <h1 className='text-2xl text-white'>{header.title}</h1>
+              <h1 className='text-2xl text-white'>{header?.title}</h1>
               <div className='pt-3'>
                 <figure className='flex p-2 gap-x-4 rounded-r-md'>
                   {info.map((item) => {
@@ -59,6 +74,9 @@ export default function SearchPage() {
           );
         })}
       </div>
+      {/* search suggestions */}
+      <SearchSuggestions queryData={queryData} />
+      {/* end of searchSuggestions */}
     </div>
   );
 }

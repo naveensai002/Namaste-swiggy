@@ -24,6 +24,22 @@ export const getSearchPageData = async () => {
   return { data };
 };
 
+export const getSearchData = async (searchString) => {
+  const res = await fetch(
+    `https://www.swiggy.com/dapi/restaurants/search/suggest?lat=31.251484&lng=75.700007&str=${searchString}&trackingId=undefined`
+  );
+  const data = await res.json();
+  return { data };
+};
+
+export const getSpecificSearchResultData = async (searchText) => {
+  const res = await fetch(
+    `https://www.swiggy.com/dapi/restaurants/search/v3?lat=31.251484&lng=75.700007&str=${searchText}&trackingId=undefined&submitAction=ENTER&queryUniqueId=15a62467-a3a9-a414-32cf-2b88d4c42868&selectedPLTab=DISH`
+  );
+  const data = await res.json();
+  return { data };
+};
+
 export const EMPTY_CART_URL =
   'https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-5521508-4610092.png';
 

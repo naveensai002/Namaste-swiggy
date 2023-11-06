@@ -9,6 +9,7 @@ import {
   About,
   Cart,
   InstaMart,
+  SearchResultsPage,
 } from './components';
 
 import Login from './pages/Login';
@@ -31,6 +32,7 @@ import { loginUser } from './features/user/userSlice';
 import { loader as landingLoader } from './pages/Landing';
 import { loader as appLayoutLoader } from './components/AppLayout';
 import { loader as SingleProductLoader } from './pages/SingleProductPage';
+import { loader as searchResultsPageLoader } from './components/SearchResultsPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -58,6 +60,12 @@ const router = createBrowserRouter([
         element: <SingleProductPage />,
         errorElement: <ErrorElement />,
         loader: SingleProductLoader(queryClient),
+      },
+      {
+        path: '/searchResults/:id',
+        element: <SearchResultsPage />,
+        errorElement: <ErrorElement />,
+        loader: searchResultsPageLoader(queryClient),
       },
       {
         path: '/cart',
