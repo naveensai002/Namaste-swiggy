@@ -84,7 +84,7 @@ export default function SearchResultsPage() {
           {data &&
             data.slice(1).map((item) => {
               const { info, restaurant } = item.card.card;
-              console.log(info);
+              // console.log(info);
               const {
                 category,
                 id,

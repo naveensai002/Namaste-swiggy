@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useNavigation } from 'react-router-dom';
+
 import { Hero } from '../components';
 import MindPage from './MindPage';
 import TopRestaurantChain from './TopRestaurantChain';
@@ -9,6 +11,8 @@ import BestCuisineNear from './BestCuisineNear';
 import ExploreResNearMe from './ExploreResNearMe';
 import Store from './Store';
 import { SearchPage } from '../components';
+
+import { Loading } from '../components';
 
 import fetchData from '../utils/api';
 import { useOutletContext } from 'react-router-dom';
@@ -44,22 +48,30 @@ export const loader = (queryClient) => async () => {
 };
 
 export default function Landing() {
+  const navigation = useNavigation();
   const { showSearchPage } = useOutletContext();
 
+  const isLoading = navigation.state === 'loading';
   return (
     <div className='py-4'>
       {showSearchPage ? (
         <SearchPage />
       ) : (
         <>
-          <Hero />
-          <MindPage />
-          <TopRestaurantChain />
-          <OnlineFoodRestaurant />
-          <BestPlaces />
-          <BestCuisineNear />
-          <ExploreResNearMe />
-          <Store />
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              <Hero />
+              <MindPage />
+              <TopRestaurantChain />
+              <OnlineFoodRestaurant />
+              <BestPlaces />
+              <BestCuisineNear />
+              <ExploreResNearMe />
+              <Store />
+            </>
+          )}
         </>
       )}
     </div>
