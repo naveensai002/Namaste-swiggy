@@ -16,6 +16,14 @@ export const fetchSinglePageData = async (id) => {
   return { data };
 };
 
+export const getSearchPageData = async () => {
+  const res = await fetch(
+    'https://www.swiggy.com/dapi/landing/PRE_SEARCH?lat=31.251484&lng=75.700007'
+  );
+  const data = await res.json();
+  return { data };
+};
+
 export const EMPTY_CART_URL =
   'https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-5521508-4610092.png';
 
@@ -32,8 +40,8 @@ export default async function fetchData() {
   return data;
 }
 
-export const bestRestaurant = async () => {
-  const response = await fetch(API_URL);
-  const data = await response.json();
-  return data;
-};
+// export const bestRestaurant = async () => {
+//   const response = await fetch(API_URL);
+//   const data = await response.json();
+//   return data;
+// };

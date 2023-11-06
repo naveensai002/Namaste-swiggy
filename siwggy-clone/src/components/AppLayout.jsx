@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
 import Header from './Header';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import Loading from './Loading';
 
-import { Outlet } from 'react-router-dom';
-import { useNavigation } from 'react-router-dom';
+import { Outlet, useNavigation } from 'react-router-dom';
 
 import fetchData from '../utils/api';
 
@@ -24,18 +23,26 @@ export const loader = (queryClient) => async () => {
 
 const AppLayout = () => {
   const navigation = useNavigation();
-
   const loading = navigation.state === 'loading';
+
+  const [showSearchPage, setShowSearchPage] = useState(false);
+
+  const toggleSearchPage = useCallback(() => {
+    setShowSearchPage(!showSearchPage);
+  }, [showSearchPage]);
 
   return (
     <>
       <Header />
-      <Navbar />
+      <Navbar
+        showSearchPage={showSearchPage}
+        toggleSearchPage={toggleSearchPage}
+      />
       {loading ? (
         <Loading />
       ) : (
         <section className='align-element '>
-          <Outlet />
+          <Outlet context={{ showSearchPage }} />
         </section>
       )}
       <Footer />

@@ -12,3 +12,4 @@ export { default as SectionTitle } from './SectionTitle';
 export { default as Filters } from './Filters';
 export { default as SinglePageLoaded } from './SinglePageLoaded';
 export { default as TopPick } from './TopPick';
+export { default as SearchPage } from './SearchPage';

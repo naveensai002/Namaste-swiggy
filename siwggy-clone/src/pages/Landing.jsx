@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Hero } from '../components';
 import MindPage from './MindPage';
 import TopRestaurantChain from './TopRestaurantChain';
@@ -7,8 +8,10 @@ import BestPlaces from './BestPlaces';
 import BestCuisineNear from './BestCuisineNear';
 import ExploreResNearMe from './ExploreResNearMe';
 import Store from './Store';
+import { SearchPage } from '../components';
 
 import fetchData from '../utils/api';
+import { useOutletContext } from 'react-router-dom';
 
 const filterQuery = {
   queryKey: ['filter'],
@@ -41,16 +44,24 @@ export const loader = (queryClient) => async () => {
 };
 
 export default function Landing() {
+  const { showSearchPage } = useOutletContext();
+
   return (
     <div className='py-4'>
-      <Hero />
-      <MindPage />
-      <TopRestaurantChain />
-      <OnlineFoodRestaurant />
-      <BestPlaces />
-      <BestCuisineNear />
-      <ExploreResNearMe />
-      <Store />
+      {showSearchPage ? (
+        <SearchPage />
+      ) : (
+        <>
+          <Hero />
+          <MindPage />
+          <TopRestaurantChain />
+          <OnlineFoodRestaurant />
+          <BestPlaces />
+          <BestCuisineNear />
+          <ExploreResNearMe />
+          <Store />
+        </>
+      )}
     </div>
   );
 }

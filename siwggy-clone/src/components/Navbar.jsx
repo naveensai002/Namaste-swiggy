@@ -1,16 +1,20 @@
 import React, { useCallback, useState } from 'react';
 
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, useOutletContext } from 'react-router-dom';
 
 import { BsCart3, BsMoonFill, BsSunFill } from 'react-icons/bs';
 import { FaBarsStaggered } from 'react-icons/fa6';
 import { IoFastFoodSharp } from 'react-icons/io5';
+import { CgSearch } from 'react-icons/cg';
 
 import NavLinks from './NavLinks';
+
 import { useDispatch } from 'react-redux';
 import { themeToggle } from '../features/user/userSlice';
 
-const Navbar = () => {
+const Navbar = ({ showSearchPage, toggleSearchPage }) => {
+  // console.log(showSearchPage);
+
   const [showBtn, setShowBtn] = useState(false);
 
   const dispatch = useDispatch();
@@ -53,7 +57,15 @@ const Navbar = () => {
           <NavLinks setShowBtn={setShowBtn} />
         </ul>
       </div>
+
       <div className='navbar-end flex gap-x-6 '>
+        <div
+          className='mr-32 p-2 flex items-center gap-x-2 cursor-pointer'
+          onClick={toggleSearchPage}
+        >
+          <CgSearch className=' pt-1 ' size={24} />
+          <button className='capitalize tracking-wider'>search</button>
+        </div>
         <label className='swap swap-rotate'>
           <input type='checkbox' onChange={handleTheme} />
           <BsSunFill className='swap-on h-6 w-6' />

@@ -44,8 +44,9 @@ export default function Filters() {
 
       <div className='gap-4 flex btn-md '>
         {nextFilterData.map((nfData) => {
-          // console.log(nfData.facetInfo[0]);
-          const { label, id } = nfData.facetInfo[0];
+          // console.log(nfData);
+          const { label, id } = nfData;
+          // console.log(label, id);
           return (
             <button
               onClick={handleFilterChange}
