@@ -16,14 +16,13 @@ const fetchCities = {
 
 export const loader = (queryClient) => async () => {
   const response = await queryClient.ensureQueryData(fetchCities);
-  // console.log(response?.data?.cards[11]?.card?.card?.cities);
   const cities = response?.data?.cards[11]?.card?.card?.cities;
   return { cities };
 };
 
 const AppLayout = () => {
   const navigation = useNavigation();
-  const loading = navigation.state === 'loading';
+  const isLoading = navigation.state === 'loading';
 
   const [showSearchPage, setShowSearchPage] = useState(false);
 
@@ -38,10 +37,10 @@ const AppLayout = () => {
         showSearchPage={showSearchPage}
         toggleSearchPage={toggleSearchPage}
       />
-      {loading ? (
+      {isLoading ? (
         <Loading />
       ) : (
-        <section className='align-element '>
+        <section>
           <Outlet context={{ showSearchPage }} />
         </section>
       )}
