@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { getSpecificSearchResultData } from '../utils/api';
 import { useLoaderData } from 'react-router-dom';
 import { useParams, useNavigate, useNavigation } from 'react-router-dom';
@@ -28,12 +28,20 @@ export const loader =
   };
 
 export default function SearchResultsPage() {
+  const { id } = useParams();
+  const [query, setQuery] = useState('');
   const navigate = useNavigate();
   const navigation = useNavigation();
-  const { id } = useParams();
   const data = useLoaderData();
 
-  const isLoading = navigation.state === 'laoding';
+  const handleQuery = useCallback(
+    (ev) => {
+      setQuery(ev.target.value);
+    },
+    [query]
+  );
+
+  const isLoading = navigation.state === 'loading';
   const isSubmitting = navigation.state === 'submitting';
 
   const imgCaro =
@@ -45,13 +53,15 @@ export default function SearchResultsPage() {
       <div className='w-3/4 p-4 pl-32'>
         <input
           type='search'
+          value={query}
+          onChange={handleQuery}
           className='cursor-text w-3/4 p-3 relative rounded-md border border-yellow-400 outline-none text-md text-center tracking-widest focus:bg-slate-200'
           placeholder='Search for restaurants and food'
           defaultValue={id}
         />
         <AiOutlineLeft
           onClick={() => navigate(-1)}
-          className=' pt-1 top-[35%]  absolute left-[38%]  cursor-pointer hover:bg-black hover:shadow-md hover:rounded-full hover:p-1'
+          className=' pt-1 top-44  absolute left-[38%]  cursor-pointer hover:bg-black hover:shadow-md hover:rounded-full hover:p-1'
           size={28}
         />
       </div>
