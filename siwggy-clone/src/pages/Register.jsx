@@ -50,7 +50,7 @@ export const action =
 
 const Register = () => {
   return (
-    <section className='h-2/4 grid place-items-center bg-slate-200 '>
+    <section className='h-fit pt-4 pb-4 grid place-items-center bg-slate-200 '>
       <Form method='post' className='card w-96 bg-base-100 shadow-xl'>
         <div className='card-body items-center text-center mb-4'>
           <h1 className='font-semibold text-2xl uppercase mb-4'>Register</h1>

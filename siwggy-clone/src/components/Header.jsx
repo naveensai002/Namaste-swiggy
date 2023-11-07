@@ -15,15 +15,15 @@ const Header = () => {
    * Login /Register
    */
   return (
-    <div className=' flex flex-row items-center gap-x-6 bg-base-100 text-white justify-end mr-4 p-3 '>
+    <div className='cursor-pointer flex flex-row items-center gap-x-6 bg-base-100 text-white justify-end mr-4 p-3 '>
       {user ? (
-        <div className='flex flex-row gap-4 font-semibold text-sm items-center text-rose-500'>
+        <div className='flex flex-row gap-4 cursor-pointer font-semibold text-sm items-center text-rose-500'>
           <h3>Hello</h3>
           <span className='capitalize'>
             {user?.[0]?.displayName || 'Naveen'}
           </span>
           <button
-            className='btn btn-outline btn-warning btn-xs '
+            className='btn btn-outline btn-ghost btn-xs '
             onClick={() => dispatch(logoutUser())}
           >
             Logout

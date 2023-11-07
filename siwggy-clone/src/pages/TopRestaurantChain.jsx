@@ -11,6 +11,16 @@ import { TiLocation } from 'react-icons/ti';
 import { BiCartAdd } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 
+import { headerData } from '../utils/constant';
+
+const {
+  id: offerId,
+  header: offerHeader,
+  subheader: offersubHeader,
+} = headerData;
+// console.log(id, header, subheader);
+// console.log(headerInfo[discountInfoV]);
+
 export default function TopRestaurantChain() {
   const [items, setItems] = useState([]);
 
@@ -82,7 +92,7 @@ export default function TopRestaurantChain() {
               } = info;
 
               // console.log(info);
-              const { header, subHeader } = aggregatedDiscountInfoV3;
+              // const { header, subHeader } = aggregatedDiscountInfoV3;
               const { deliveryTime } = sla;
               const imgCaro =
                 'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/';
@@ -101,11 +111,21 @@ export default function TopRestaurantChain() {
                           alt='mind-image'
                         />
                       </figure>
-                      <div className='card-body absolute bottom-0 bg-gradient-to-t from-black w-full rounded-md'>
-                        <h3 className='text-white font-bold tracking-widest  '>
-                          {header + subHeader}
-                        </h3>
-                      </div>
+                      {aggregatedDiscountInfoV3?.header &&
+                      aggregatedDiscountInfoV3?.subHeader ? (
+                        <div className='card-body absolute bottom-0 bg-gradient-to-t from-black w-full rounded-md'>
+                          <h3 className='text-white font-bold tracking-widest  '>
+                            {aggregatedDiscountInfoV3?.header +
+                              aggregatedDiscountInfoV3?.subHeader}
+                          </h3>
+                        </div>
+                      ) : (
+                        <div className='card-body absolute bottom-0 bg-gradient-to-t from-black w-full rounded-md'>
+                          <h3 className='text-white font-bold tracking-widest  '>
+                            {offerHeader + offersubHeader}
+                          </h3>
+                        </div>
+                      )}
                     </div>
                     <div className='mt-4'>
                       <h2 className='font-semibold tracking-wider text-xl'>

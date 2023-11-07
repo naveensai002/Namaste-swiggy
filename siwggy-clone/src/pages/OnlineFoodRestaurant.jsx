@@ -8,6 +8,14 @@ import { MdStars } from 'react-icons/md';
 import { TiLocation } from 'react-icons/ti';
 import { Link, useLoaderData } from 'react-router-dom';
 
+import { headerData } from '../utils/constant';
+
+const {
+  id: offerId,
+  header: offerHeader,
+  subheader: offersubHeader,
+} = headerData;
+
 export default function OnlineFoodRestaurant() {
   // const [items, setItems] = useState([]);
   const { onlineFoodResData } = useLoaderData();
@@ -57,7 +65,7 @@ export default function OnlineFoodRestaurant() {
             } = info;
 
             // console.log(info);
-            const { header, subHeader } = aggregatedDiscountInfoV3;
+            // const { header, subHeader } = aggregatedDiscountInfoV3;
             // console.log(header, subHeader);
             const { deliveryTime } = sla;
             const imgCaro =
@@ -77,11 +85,21 @@ export default function OnlineFoodRestaurant() {
                     <p className='btn btn-xs btn-warning absolute right-0 top-0 uppercase tracking-tight font-bold'>
                       {costForTwo}
                     </p>
-                    <div className='card-body absolute bottom-0 bg-gradient-to-t from-black w-full rounded-md'>
-                      <h3 className='text-white font-bold tracking-widest  '>
-                        {header + subHeader}
-                      </h3>
-                    </div>
+                    {aggregatedDiscountInfoV3?.header &&
+                    aggregatedDiscountInfoV3?.subHeader ? (
+                      <div className='card-body absolute bottom-0 bg-gradient-to-t from-black w-full rounded-md'>
+                        <h3 className='text-white font-bold tracking-widest  '>
+                          {aggregatedDiscountInfoV3?.header +
+                            aggregatedDiscountInfoV3?.subHeader}
+                        </h3>
+                      </div>
+                    ) : (
+                      <div className='card-body absolute bottom-0 bg-gradient-to-t from-black w-full rounded-md'>
+                        <h3 className='text-white font-bold tracking-widest  '>
+                          {offerHeader + offersubHeader}
+                        </h3>
+                      </div>
+                    )}
                   </div>
                   <div className='mt-4'>
                     <h2 className='font-semibold tracking-wider text-xl'>
