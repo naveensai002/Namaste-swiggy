@@ -35,4 +35,4 @@ const discountInfo = [
 const discountInfoV = discountInfo.map((item) => item);
 
 export const headerData = discountInfoV[Math.floor(Math.random() * 5)];
-console.log(headerData);
+// console.log(headerData);
