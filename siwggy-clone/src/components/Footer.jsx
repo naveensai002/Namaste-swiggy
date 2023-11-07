@@ -67,9 +67,9 @@ export default function Footer() {
               cities.slice(0, 6).map((city) => {
                 const { text, link } = city;
                 return (
-                  <p key={link} className='link link-hover'>
+                  <span key={link} className='link link-hover'>
                     {text}
-                  </p>
+                  </span>
                 );
               })}
           </p>

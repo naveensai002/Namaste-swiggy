@@ -14,7 +14,7 @@ export default function ExploreResNearMe() {
           return (
             <Link key={link} to={link}>
               <button
-                className='btn btn-md btn-ghost p-2 rounded-md tracking-wide hover:bg-gradient-to-t from-blue-100
+                className='btn btn-md btn-ghost p-2 rounded-md tracking-wide 
               font-semibold '
               >
                 {text}

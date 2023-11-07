@@ -9,10 +9,11 @@ import { CgSearch } from 'react-icons/cg';
 
 import NavLinks from './NavLinks';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { themeToggle } from '../features/user/userSlice';
 
 const Navbar = ({ showSearchPage, toggleSearchPage }) => {
+  const itemsInCart = useSelector((state) => state.cart.itemsInCart);
   // console.log(showSearchPage);
 
   const [showBtn, setShowBtn] = useState(false);
@@ -45,7 +46,7 @@ const Navbar = ({ showSearchPage, toggleSearchPage }) => {
           {showBtn && (
             <ul
               tabIndex={0}
-              className='menu menu-sm dropdown-content mt-3 z-[1]  shadow bg-base-100 rounded-box w-52 flex flex-col gap-y-4 show-md hover:shadow-xl p-3'
+              className='menu menu-sm dropdown-content mt-3 z-[1]  shadow bg-base-100 rounded-box w-52 flex flex-col gap-y-4 show-md hover:shadow-xl p-3 gap-2'
             >
               <NavLinks setShowBtn={setShowBtn} />
             </ul>
@@ -53,7 +54,7 @@ const Navbar = ({ showSearchPage, toggleSearchPage }) => {
         </div>
       </div>
       <div className='navbar-center hidden md:flex lg:flex'>
-        <ul className='menu menu-horizontal px-1'>
+        <ul className='menu menu-horizontal px-1 gap-2'>
           <NavLinks setShowBtn={setShowBtn} />
         </ul>
       </div>
@@ -77,7 +78,7 @@ const Navbar = ({ showSearchPage, toggleSearchPage }) => {
           <div className='indicator'>
             <BsCart3 className='h-6 w-6' />
             <span className='badge badge-sm badge-primary indicator-item'>
-              3
+              {itemsInCart}{' '}
             </span>
           </div>
         </NavLink>

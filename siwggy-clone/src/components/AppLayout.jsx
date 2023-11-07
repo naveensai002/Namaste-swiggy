@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import Loading from './Loading';
+import SearchPage from './SearchPage';
 
 import { Outlet, useNavigation } from 'react-router-dom';
 
@@ -41,7 +42,12 @@ const AppLayout = () => {
         <Loading />
       ) : (
         <section>
-          <Outlet context={{ showSearchPage }} />
+          {showSearchPage ? (
+            <SearchPage />
+          ) : (
+            <Outlet context={{ showSearchPage }} />
+          )}
+          {/* <Outlet context={{ showSearchPage }} /> */}
         </section>
       )}
       <Footer />

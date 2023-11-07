@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react';
 import SectionTitle from './SectionTitle';
-// import CarouselWrapper from '../hooks/CarouselWrapper';
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
+import { addItemToCart } from '../features/cart/cartSlice';
+import { useDispatch } from 'react-redux';
+
 export default function TopPick({ topPicks }) {
-  const { carousel } = topPicks[1].card.card;
-  // console.log(carousel);
+  const dispatch = useDispatch();
+
+  const { carousel } = topPicks[1]?.card?.card;
+  // console.log('topPicks', topPicks);
   // console.log(carousel.creativeId);
 
   const responsive = {
@@ -44,8 +48,28 @@ export default function TopPick({ topPicks }) {
             dotListClass='custom-dot-list-style'
             itemClass='carousel-item-padding-40-px pb-8 '
           >
-            {carousel.map((cData) => {
-              const { bannerId, dish, title, creativeId } = cData;
+            {carousel?.map((cData) => {
+              // console.log(cData);
+              const { bannerId, dish, title, creativeId, description } = cData;
+              const {
+                category,
+                description: carouselDes,
+                imageId,
+                name,
+                price,
+                ribbon,
+              } = dish?.info;
+              console.log(imageId);
+              const cartProduct = {
+                id: bannerId,
+                category,
+                carouselDes: description,
+                title,
+                name,
+                price,
+                imageId,
+                amount: 1,
+              };
               return (
                 <div key={bannerId} className='relative '>
                   <figure className=' p-2'>
@@ -56,7 +80,10 @@ export default function TopPick({ topPicks }) {
                     />
                   </figure>
                   {/* on click add to cart */}
-                  <button className='absolute bottom-6 right-6 bg-white  rounded-md w-[6rem] h-8 text-green-700 tracking-widest'>
+                  <button
+                    onClick={() => dispatch(addItemToCart({ cartProduct }))}
+                    className='absolute bottom-6 right-6 bg-white  rounded-md w-[6rem] h-8 text-green-700 tracking-widest'
+                  >
                     <span className='absolute font-bold -top-2 right-0'>+</span>
                     ADD
                   </button>

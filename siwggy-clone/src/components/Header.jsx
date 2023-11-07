@@ -1,12 +1,14 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../features/user/userSlice';
+import { clearCart } from '../features/cart/cartSlice';
 
 const Header = () => {
   const user = useSelector((state) => state?.user?.user);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // console.log(user[0].displayName);
   /**
    * if user then only hello + userName and logout button
@@ -14,6 +16,14 @@ const Header = () => {
    * if not user
    * Login /Register
    */
+
+  const handlelogout = () => {
+    dispatch(logoutUser());
+    dispatch(clearCart());
+    setTimeout(() => {
+      navigate('/');
+    }, 3000);
+  };
   return (
     <div className='cursor-pointer flex flex-row items-center gap-x-6 bg-base-100 text-white justify-end mr-4 p-3 '>
       {user ? (
@@ -24,7 +34,7 @@ const Header = () => {
           </span>
           <button
             className='btn btn-outline btn-ghost btn-xs '
-            onClick={() => dispatch(logoutUser())}
+            onClick={handlelogout}
           >
             Logout
           </button>

@@ -14,3 +14,7 @@ export { default as SinglePageLoaded } from './SinglePageLoaded';
 export { default as TopPick } from './TopPick';
 export { default as SearchPage } from './SearchPage';
 export { default as SearchResultsPage } from './SearchResultsPage';
+export { default as Checkout } from './Checkout';
+export { default as Orders } from './Orders';
+export { default as cartItems } from './CartItems';
+export { default as CartTotal } from './CartTotal';

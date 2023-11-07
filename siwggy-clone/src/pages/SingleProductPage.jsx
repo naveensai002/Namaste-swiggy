@@ -48,13 +48,13 @@ export default function SingleProductPage() {
 
   const singlePageData = topPicks[2].card.card.itemCards;
 
-  console.log('singelPage1', singlePageData);
+  // console.log('singelPage1', singlePageData);
 
   const singlePageData2 = allData.cards.map((item) => item.card);
 
   const singlePageData2N = singlePageData2.map((items) => items).slice(2);
   const itemsCardsData = singlePageData2N.map((item) => item.card.itemCards);
-  console.log('itemsCards', itemsCardsData[0]);
+  // console.log('itemsCards', itemsCardsData[0]);
 
   const {
     aggregatedDiscountInfo,
@@ -105,21 +105,21 @@ export default function SingleProductPage() {
         <div className='flex flex-col justify-center items-center cols-span-11 p-2 gap-y-3'>
           <h1 className='font-bold text-xl tracking-widest '>{name}</h1>
           <p className='flex gap-x-1'>
-            {cuisines.map((cuisine, i) => {
+            {cuisines?.map((cuisine) => {
               return (
-                <p
-                  key={i}
+                <span
+                  key={id}
                   className='text-slate-600 tracking-wide  gap-x-1 flex flex-row'
                 >
                   {cuisine}
-                </p>
+                </span>
               );
             })}
           </p>
           <p className='flex gap-x-1 font-light tracking-tight text-slate-600'>
             {areaName},
             <span className='font-semibold text-slate-600'>
-              {sla.lastMileTravel} km
+              {sla?.lastMileTravel} km
             </span>
           </p>
         </div>
@@ -156,7 +156,7 @@ export default function SingleProductPage() {
         {/* deal of the day */}
         {/*  offer icon 60% off upto rate icon 120 */}
         {/* use steakdeak | above rs 189 */}
-        {offers.map((offer) => {
+        {offers?.map((offer) => {
           // console.log(offer);
           const {
             couponCode,
@@ -171,7 +171,7 @@ export default function SingleProductPage() {
 
           return (
             <div
-              key={expiryTime}
+              key={couponCode}
               className='shadow-md rounded-xl mt-6 p-2 w-fit bg-slate-100 border border-slate-600'
             >
               <p className=' text-sm tracking-wide font-bold text-slate-700 flex gap-x-2 items-center'>
@@ -191,7 +191,9 @@ export default function SingleProductPage() {
       </div>
       <div className='mr-12 pr-12  border-b border-dashed border-slate-300 ml-12 pl-12  pt-4'></div>
       {/*  TOP PICKS */}
-      {topPicks[1]?.card?.card.carousel && <TopPick topPicks={topPicks} />}
+      {topPicks[1] && topPicks[1]?.card?.card.carousel && (
+        <TopPick topPicks={topPicks} />
+      )}
       {/* SinglePageLoaded */}
       {<SinglePageLoaded singlePageData={singlePageData} />}
       {<SinglePageLoaded singlePageData={itemsCardsData[0]} />}

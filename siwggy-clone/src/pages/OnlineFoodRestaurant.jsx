@@ -111,7 +111,7 @@ export default function OnlineFoodRestaurant() {
                       <p className='flex items-center'>. {deliveryTime} mins</p>
                     </div>
                     <p className='flex gap-x-2 tracking-tighter pt-1 overflow-hidden'>
-                      {cuisines.map((cuisine) => {
+                      {cuisines?.map((cuisine) => {
                         return <span key={cuisine}>{cuisine}</span>;
                       })}
                     </p>

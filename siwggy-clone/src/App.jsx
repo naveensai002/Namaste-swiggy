@@ -10,6 +10,8 @@ import {
   Cart,
   InstaMart,
   SearchResultsPage,
+  Checkout,
+  Orders,
 } from './components';
 
 import Login from './pages/Login';
@@ -70,6 +72,16 @@ const router = createBrowserRouter([
       {
         path: '/cart',
         element: <Cart />,
+        errorElement: <ErrorElement />,
+      },
+      {
+        path: '/checkout',
+        element: <Checkout />,
+        errorElement: <ErrorElement />,
+      },
+      {
+        path: '/orders',
+        element: <Orders />,
         errorElement: <ErrorElement />,
       },
       {
