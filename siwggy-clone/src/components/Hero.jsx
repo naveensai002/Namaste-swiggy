@@ -109,7 +109,7 @@ export default function Hero() {
               keyBoardControl={true}
               containerClass='carousel-container'
               responsive={responsive}
-              showDots={true}
+              loop={true}
               dotListClass='custom-dot-list-style'
               itemClass='carousel-item-padding-40-px'
             >

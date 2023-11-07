@@ -112,7 +112,7 @@ export default function OnlineFoodRestaurant() {
                     </div>
                     <p className='flex gap-x-2 tracking-tighter pt-1 overflow-hidden'>
                       {cuisines.map((cuisine) => {
-                        return <p key={cuisine}>{cuisine}</p>;
+                        return <span key={cuisine}>{cuisine}</span>;
                       })}
                     </p>
                     <div className='flex  gap-24  items-center relative'>

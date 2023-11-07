@@ -1,8 +1,11 @@
 import React from 'react';
 import { HiCurrencyRupee } from 'react-icons/hi';
 
+import { useDispatch } from 'react-redux';
+import { addItemToCart } from '../features/cart/cartSlice';
+
 export default function SinglePageLoaded(singlePageData) {
-  // console.log(singlePageData.singlePageData);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -50,6 +53,13 @@ export default function SinglePageLoaded(singlePageData) {
                         {inStock}
                       </span>
                     </p>
+                    <button
+                      className='tracking-widest text-lg font-semibold mt-4 btn-md btn-ghost rounded-lg shadow-md bg-rose-500 text-black'
+                      onClick={() => dispatch(addItemToCart('item added'))}
+                    >
+                      {' '}
+                      Add
+                    </button>
                   </div>
                   <div className='cursor-pointer relative'>
                     <figure className='rounded-md '>
