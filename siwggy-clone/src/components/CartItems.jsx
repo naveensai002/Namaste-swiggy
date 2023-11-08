@@ -1,28 +1,11 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart } from '../features/cart/cartSlice';
+import { useDispatch } from 'react-redux';
+import { removeFromCart, editCartItem } from '../features/cart/cartSlice';
 
 export default function CartItems({ cartItems }) {
-  const [newAmount, setNewAmount] = useState(1);
-
   const dispatch = useDispatch();
-
-  // console.log(cartItems);
-
-  const increaseAmount = useCallback(() => {
-    setNewAmount((prev) => prev + 1);
-  }, []);
-
-  const decreaseAmount = useCallback(() => {
-    setNewAmount((prev) => {
-      if (prev < 2) {
-        return (prev = 1);
-      } else {
-        return prev - 1;
-      }
-    });
-  }, []);
+  const amountRef = useRef();
 
   const imgCaro =
     'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_628,h_704/';
@@ -46,11 +29,11 @@ export default function CartItems({ cartItems }) {
             <div key={id} className='pt-4'>
               <div className='flex gap-x-6 bg-slate-200 items-center text-black tracking-widest leading-6 w-full justify-between pr-3 rounded-lg'>
                 {imageId && (
-                  <figure className='w-1/4 rounded-md object-cover ml-1'>
+                  <figure className='w-1/4 rounded-md object-cover m-2 '>
                     <img
                       src={imgCaro + imageId}
                       alt='cart-image'
-                      className='h-32 w-full rounded-md shadow-md'
+                      className='h-32 w-full rounded-md shadow-md '
                     />
                   </figure>
                 )}
@@ -65,14 +48,16 @@ export default function CartItems({ cartItems }) {
                 <div className='flex gap-x-3 items-center'>
                   <button
                     className=' btn-sm btn-warning rounded-md shadow-md hover:btn-success'
-                    onClick={decreaseAmount}
+                    onClick={() => dispatch(editCartItem({ id, type: 'dec' }))}
                   >
                     -
                   </button>
-                  <p className='font-semibold -tracking-widest'>{newAmount}</p>
+                  <p className='font-semibold -tracking-widest' ref={amountRef}>
+                    {amount}
+                  </p>
                   <button
                     className='btn-sm btn-warning rounded-md shadow-md hover:btn-success'
-                    onClick={increaseAmount}
+                    onClick={() => dispatch(editCartItem({ id, type: 'inc' }))}
                   >
                     +
                   </button>

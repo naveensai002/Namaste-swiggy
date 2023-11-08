@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useDebugValue } from 'react';
 import { TbShoppingCartFilled } from 'react-icons/tb';
+
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../features/cart/cartSlice';
 
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -9,6 +12,8 @@ import CartItems from './CartItems';
 import CartTotal from './CartTotal';
 
 const Cart = () => {
+  const dispatch = useDispatch();
+
   const cartItems = useSelector((state) => state.cart.cartItems);
   const user = useSelector((state) => state?.user?.user);
 
@@ -146,9 +151,15 @@ const Cart = () => {
           </li>
         </ul>
       </div>
-      <div className='flex gap-x-6 items-center mb-4'>
+      <div className='flex gap-x-6 items-center  justify-between mr-32 mb-12'>
         <SectionTitle text='Your Cart' />
-        <TbShoppingCartFilled size={26} />
+        {/* <TbShoppingCartFilled size={26} className='text-rose-500' /> */}
+        <button
+          className='btn btn-warning btn-sm  font-thin rounded-md shadow-md text-lg tracking-widest'
+          onClick={() => dispatch(clearCart())}
+        >
+          Clear Cart
+        </button>
       </div>
       <div className='grid gap-8 lg:grid-cols-12'>
         <div className='lg:col-span-8 '>

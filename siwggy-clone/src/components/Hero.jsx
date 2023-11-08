@@ -102,7 +102,7 @@ export default function Hero() {
               />
             </div> */}
           </div>
-          <div className=' gap-4 carousel-container '>
+          <div className=' gap-4 carousel-container'>
             <Carousel
               autoPlay={true}
               autoPlaySpeed={1000}
