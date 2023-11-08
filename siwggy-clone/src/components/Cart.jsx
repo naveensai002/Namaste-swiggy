@@ -151,7 +151,7 @@ const Cart = () => {
         <TbShoppingCartFilled size={26} />
       </div>
       <div className='grid gap-8 lg:grid-cols-12'>
-        <div className='lg:col-span-8'>
+        <div className='lg:col-span-8 '>
           <CartItems cartItems={cartItems} />
         </div>
         <div className='lg:col-span-4 lg:pl-4 flex flex-col items-center w-full'>
@@ -159,7 +159,7 @@ const Cart = () => {
           {user ? (
             <Link
               to='/checkout'
-              className='mt-8 btn btn-warning w-3/4 tracking-widest rounded-md'
+              className='mt-8 btn btn-warning w-3/4 tracking-widest rounded-md hover:btn-success'
             >
               Checkout
             </Link>

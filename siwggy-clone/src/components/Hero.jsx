@@ -102,7 +102,7 @@ export default function Hero() {
               />
             </div> */}
           </div>
-          <div className=' gap-4 carousel-container'>
+          <div className=' gap-4 carousel-container '>
             <Carousel
               autoPlay={true}
               autoPlaySpeed={1000}
@@ -126,7 +126,7 @@ export default function Hero() {
                   return (
                     <div className='mt-12 ml-8 p-6 ' key={item.id}>
                       <div
-                        className=' card card-side max-w-[38rem] bg-base-300 shadow-xl  '
+                        className=' card card-side max-w-[38rem] bg-base-300 shadow-xl '
                         ref={carouselContainer}
                       >
                         <figure>
