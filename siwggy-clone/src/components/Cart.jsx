@@ -173,13 +173,13 @@ const Cart = () => {
             </h1>
             <CartTotal />{' '}
             {user ? (
-              <Link
+              <button
                 // to='/checkout'
                 className='mt-8 btn btn-success btn-outline w-3/4 tracking-widest rounded-md ml-12 mb-4'
-                onClick={() => Payment()}
+                onClick={Payment()}
               >
                 proceed for payment
-              </Link>
+              </button>
             ) : (
               <Link to='/login' className='mt-8 btn btn-error w-3/4  '>
                 Sign in to checkout

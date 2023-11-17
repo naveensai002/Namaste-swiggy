@@ -4,8 +4,9 @@ import { clearCart } from '../features/cart/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-const Payment = () => {
-  const price = useSelector((store) => store.cart.totalPrice);
+export default function Payment() {
+  const price = useSelector((state) => state.cart.orderTotal);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ const Payment = () => {
       key: 'rzp_test_nX8vfzrmgj0rey',
       amount: price,
       currency: 'INR',
-      name: 'Raghav Foods',
+      name: 'Foodio Sirsa',
       description: 'Order food online',
       // image: Logo,
       handler: handlePayment,
@@ -31,6 +32,4 @@ const Payment = () => {
   };
 
   return launchRazorPay;
-};
-
-export default Payment;
+}
