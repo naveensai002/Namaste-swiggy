@@ -86,7 +86,7 @@ export default function SinglePageLoaded(singlePageData) {
                     {/* {showAmountBtn ? ( */}
                     <button
                       // onClick={toggleShowBtn}
-                      className='tracking-widest text-lg font-semibold mt-4 btn-md btn-ghost rounded-lg shadow-md bg-rose-500 text-black'
+                      className='tracking-widest text-lg font-semibold mt-4 btn-md btn-ghost btn-outline rounded-lg shadow-md  text-black'
                       onClick={() => {
                         dispatch(addItemToCart({ cartProduct }));
                         setTimeout(() => {
