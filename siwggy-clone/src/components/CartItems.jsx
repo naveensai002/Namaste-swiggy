@@ -33,7 +33,11 @@ export default function CartItems({ cartItems }) {
             amount: 1,
             id: id,
             name,
-            price: Number(price) / 100 || 90,
+            price,
+            description,
+            category,
+            imageId,
+            inStock,
           };
 
           return (

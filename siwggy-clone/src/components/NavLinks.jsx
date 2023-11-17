@@ -9,7 +9,6 @@ const links = [
   { id: 3, text: 'InstaMart', url: 'instaMart' },
   // { id: 4, text: 'Cart', url: 'cart' },
   { id: 4, text: 'Checkout', url: 'checkout' },
-  { id: 5, text: 'Orders', url: 'orders' },
 ];
 
 const NavLinks = ({ setShowBtn }) => {
@@ -23,7 +22,7 @@ const NavLinks = ({ setShowBtn }) => {
       {links.map((link) => {
         const { id, text, url } = link;
         // condition for protected routes
-        if ((url === 'checkout' || url === 'orders') && !user) {
+        if (url === 'checkout' && !user) {
           return null;
         }
         return (

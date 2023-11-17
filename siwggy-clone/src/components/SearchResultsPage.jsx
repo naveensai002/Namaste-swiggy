@@ -2,12 +2,14 @@ import React, { useCallback, useState } from 'react';
 import { getSpecificSearchResultData } from '../utils/api';
 import { useLoaderData } from 'react-router-dom';
 import { useParams, useNavigate, useNavigation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import Loading from './Loading';
+import { addItemToCart } from '../features/cart/cartSlice';
 
 import { AiOutlineLeft } from 'react-icons/ai';
 import { HiCurrencyRupee } from 'react-icons/hi2';
-import { BsFillCartPlusFill } from 'react-icons/bs';
+// import { BsFillCartPlusFill } from 'react-icons/bs';
 
 const searchSpecificData = (searchText) => {
   return {
@@ -32,6 +34,7 @@ export default function SearchResultsPage() {
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const data = useLoaderData();
 
   const handleQuery = useCallback(
@@ -104,6 +107,16 @@ export default function SearchResultsPage() {
 
               // console.log('info', ratings);
 
+              const cartProduct = {
+                id,
+                name,
+                price,
+                amount: 1,
+                imageId,
+                ratings,
+                category,
+              };
+
               return (
                 <div
                   key={id}
@@ -144,6 +157,10 @@ export default function SearchResultsPage() {
                     <button
                       disabled={isSubmitting}
                       className='cursor-pointer tracking-widest  btn-sm btn-warning btn-outline  rounded-lg  pr-6'
+                      onClick={() => {
+                        dispatch(addItemToCart({ cartProduct }));
+                        navigate('/cart');
+                      }}
                     >
                       Add to cart
                     </button>

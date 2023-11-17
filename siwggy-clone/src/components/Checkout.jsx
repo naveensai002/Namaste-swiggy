@@ -3,6 +3,7 @@ import { clearCart } from '../features/cart/cartSlice';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 export default function Payment() {
   const price = useSelector((state) => state.cart.orderTotal);
@@ -12,6 +13,7 @@ export default function Payment() {
 
   const handlePayment = () => {
     dispatch(clearCart());
+    toast.success('Payment is received');
     navigate('/');
   };
 

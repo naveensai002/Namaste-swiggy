@@ -79,11 +79,11 @@ const router = createBrowserRouter([
         element: <Checkout />,
         errorElement: <ErrorElement />,
       },
-      {
-        path: '/orders',
-        element: <Orders />,
-        errorElement: <ErrorElement />,
-      },
+      // {
+      //   path: '/orders',
+      //   element: <Orders />,
+      //   errorElement: <ErrorElement />,
+      // },
       {
         path: '/about',
         element: <About />,
