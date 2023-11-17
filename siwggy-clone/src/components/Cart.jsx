@@ -155,7 +155,7 @@ const Cart = () => {
         <SectionTitle text='Your Cart' />
         {/* <TbShoppingCartFilled size={26} className='text-rose-500' /> */}
         <button
-          className='btn btn-warning btn-sm  font-thin rounded-md shadow-md text-lg tracking-widest'
+          className=' btn btn-outline btn-warning btn-sm  font-thin rounded-md shadow-md text-lg tracking-widest'
           onClick={() => dispatch(clearCart())}
         >
           Clear Cart
@@ -166,19 +166,24 @@ const Cart = () => {
           <CartItems cartItems={cartItems} />
         </div>
         <div className='lg:col-span-4 lg:pl-4 flex flex-col items-center w-full'>
-          <CartTotal />{' '}
-          {user ? (
-            <Link
-              to='/checkout'
-              className='mt-8 btn btn-warning w-3/4 tracking-widest rounded-md hover:btn-success'
-            >
-              Checkout
-            </Link>
-          ) : (
-            <Link to='/login' className='mt-8 btn btn-warning w-3/4  '>
-              Sign in to checkout
-            </Link>
-          )}
+          <div className='card w-96 mr-12 bg-base-300 shadow-xl'>
+            <h1 className='text-center pt-2 text-black text-xl items-center bg-gray-300 tracking-widest font-thin'>
+              Bill details
+            </h1>
+            <CartTotal />{' '}
+            {user ? (
+              <Link
+                to='/checkout'
+                className='mt-8 btn btn-success btn-outline w-3/4 tracking-widest rounded-md ml-12 mb-4'
+              >
+                proceed for payment
+              </Link>
+            ) : (
+              <Link to='/login' className='mt-8 btn btn-error w-3/4  '>
+                Sign in to checkout
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -39,7 +39,8 @@ const cartSlice = createSlice({
       } else {
         state.cartItems.push(cartProduct);
         state.itemsInCart += cartProduct.amount;
-        state.cartTotal = cartProduct.price * cartProduct.amount;
+        state.cartTotal =
+          (cartProduct.price || cartProduct.defaultPrice) * cartProduct.amount;
         state.orderTotal = state.cartTotal + state.shipping;
         toast.success('Item added to cart');
       }
@@ -49,6 +50,7 @@ const cartSlice = createSlice({
       localStorage.setItem('cart', JSON.stringify(state));
       // console.log(state.cartItems);
     },
+
     removeFromCart: (state, action) => {
       const { id } = action.payload;
       const product = state.cartItems.find((item) => item.id === id);
@@ -69,22 +71,35 @@ const cartSlice = createSlice({
         toast.success('cart cleared successfully');
     },
     editCartItem: (state, action) => {
-      const { id, type } = action.payload;
+      const { cartProduct, type } = action.payload;
+      // console.log(type, cartProduct);
+      if (type === 'inc') {
+        const item = state.cartItems.find((it) => it.id === cartProduct.id);
+        // console.log(item);
+        item.amount += cartProduct.amount;
+        state.itemsInCart += cartProduct.amount;
+        state.cartTotal += item.price * item.amount;
+        state.orderTotal = state.cartTotal + state.shipping;
+        localStorage.setItem('cart', JSON.stringify(state));
+        toast.success('item updated in cart');
+      } else if (type === 'dec') {
+        const item = state.cartItems.find((it) => it.id === cartProduct.id);
+        // console.log(item);
+        if (item.amount <= 1) {
+          item.amount = 1;
+          state.itemsInCart = cartProduct.amount;
+          state.cartTotal = item.price * item.amount;
+          state.orderTotal = state.cartTotal + state.shipping;
+        } else {
+          item.amount -= cartProduct.amount;
+          state.itemsInCart -= cartProduct.amount;
+          state.cartTotal -= item.price * item.amount;
+          state.orderTotal = state.cartTotal + state.shipping;
+        }
 
-      const tempCart = state.cartItems
-        .map((item) => {
-          if (item.id === id) {
-            if (type === 'inc') {
-              return { ...item, amount: item.amount + 1 };
-            } else {
-              return { ...item, amount: item.amount - 1 };
-            }
-          }
-          return item;
-        })
-        .filter((item) => item.amount !== 0);
-      toast.success('cart updated');
-      return { ...state, cartItems: tempCart };
+        localStorage.setItem('cart', JSON.stringify(state));
+        toast.success('item updated in cart');
+      }
     },
   },
 });

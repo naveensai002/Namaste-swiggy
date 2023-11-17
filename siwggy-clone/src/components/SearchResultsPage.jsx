@@ -105,7 +105,10 @@ export default function SearchResultsPage() {
               // console.log('info', ratings);
 
               return (
-                <div key={id} className='flex flex-col  p-3 w-full pt-6'>
+                <div
+                  key={id}
+                  className='flex flex-col  p-3 w-full pt-6 cursor-pointer'
+                >
                   <div className='mb-4 grid grid-cols-2 gap-y-4 bg-white  p-2 rounded-md '>
                     <div>
                       <h3 className='text-semibold tracking-widest'>{name}</h3>
@@ -140,10 +143,9 @@ export default function SearchResultsPage() {
                     </div>
                     <button
                       disabled={isSubmitting}
-                      className='cursor-pointer tracking-widest btn btn-sm shadow-transparent rounded-lg mt-4  pr-6'
+                      className='cursor-pointer tracking-widest  btn-sm btn-warning btn-outline  rounded-lg  pr-6'
                     >
-                      {' '}
-                      <BsFillCartPlusFill size={18} /> Add to cart
+                      Add to cart
                     </button>
                   </div>
                 </div>

@@ -1,7 +1,11 @@
 import React, { useCallback, useState, useRef } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { removeFromCart, editCartItem } from '../features/cart/cartSlice';
+import {
+  removeFromCart,
+  editCartItem,
+  addItemToCart,
+} from '../features/cart/cartSlice';
 
 export default function CartItems({ cartItems }) {
   const dispatch = useDispatch();
@@ -25,9 +29,16 @@ export default function CartItems({ cartItems }) {
             inStock,
           } = item;
 
+          const cartProduct = {
+            amount: 1,
+            id: id,
+            name,
+            price: Number(price) / 100 || 90,
+          };
+
           return (
             <div key={id} className='pt-4'>
-              <div className='flex gap-x-6 bg-slate-200 items-center text-black tracking-widest leading-6 w-full justify-between pr-3 rounded-lg'>
+              <div className='flex gap-x-6 	bg-base-300 items-center text-black tracking-widest leading-6 w-full justify-between pr-3 rounded-lg'>
                 {imageId && (
                   <figure className='w-1/4 rounded-md object-cover m-2 '>
                     <img
@@ -48,7 +59,9 @@ export default function CartItems({ cartItems }) {
                 <div className='flex gap-x-3 items-center'>
                   <button
                     className=' btn-sm btn-warning rounded-md shadow-md hover:btn-success'
-                    onClick={() => dispatch(editCartItem({ id, type: 'dec' }))}
+                    onClick={() =>
+                      dispatch(editCartItem({ cartProduct, type: 'dec' }))
+                    }
                   >
                     -
                   </button>
@@ -57,14 +70,17 @@ export default function CartItems({ cartItems }) {
                   </p>
                   <button
                     className='btn-sm btn-warning rounded-md shadow-md hover:btn-success'
-                    onClick={() => dispatch(editCartItem({ id, type: 'inc' }))}
+                    // onClick={() => dispatch(editCartItem({ id, type: 'inc' }))}
+                    onClick={() =>
+                      dispatch(editCartItem({ cartProduct, type: 'inc' }))
+                    }
                   >
                     +
                   </button>
                 </div>
                 <div>
                   <button
-                    className='btn-success bg-rose-500 text-black tracking-widest rounded-md btn-sm '
+                    className='btn btn-outline btn-error text-black tracking-widest rounded-md btn-sm '
                     onClick={() => dispatch(removeFromCart({ id }))}
                   >
                     remove

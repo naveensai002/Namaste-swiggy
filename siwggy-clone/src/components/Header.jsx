@@ -30,10 +30,10 @@ const Header = () => {
         <div className='flex flex-row gap-4 cursor-pointer font-semibold text-sm items-center text-rose-500'>
           <h3>Hello</h3>
           <span className='capitalize'>
-            {user?.[0]?.displayName || 'Naveen'}
+            {user?.username || user[0]?.displayName || 'Naveen'}
           </span>
           <button
-            className='btn btn-outline btn-ghost btn-xs '
+            className='btn-sm rounded-lg shadow-md btn-outline btn-warning '
             onClick={handlelogout}
           >
             Logout
