@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import SectionTitle from './SectionTitle';
 import CartItems from './CartItems';
 import CartTotal from './CartTotal';
+import Payment from './Checkout';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -173,8 +174,9 @@ const Cart = () => {
             <CartTotal />{' '}
             {user ? (
               <Link
-                to='/checkout'
+                // to='/checkout'
                 className='mt-8 btn btn-success btn-outline w-3/4 tracking-widest rounded-md ml-12 mb-4'
+                onClick={() => Payment()}
               >
                 proceed for payment
               </Link>

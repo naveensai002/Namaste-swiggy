@@ -27,13 +27,13 @@ const Header = () => {
   return (
     <div className='cursor-pointer flex flex-row items-center gap-x-6 bg-base-100 text-white justify-end mr-4 p-3 '>
       {user ? (
-        <div className='flex flex-row gap-4 cursor-pointer font-semibold text-sm items-center text-rose-500'>
+        <div className='flex flex-row gap-2 cursor-pointer font-semibold text-sm items-center text-rose-500'>
           <h3>Hello</h3>
           <span className='capitalize'>
             {user?.username || user[0]?.displayName || 'Naveen'}
           </span>
           <button
-            className='btn-sm rounded-lg shadow-md btn-outline btn-warning '
+            className='btn-sm rounded-lg shadow-md btn-outline btn-warning ml-2 '
             onClick={handlelogout}
           >
             Logout

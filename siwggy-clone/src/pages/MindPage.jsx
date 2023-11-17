@@ -67,7 +67,7 @@ export default function MindPage() {
               return (
                 <div
                   key={item.id}
-                  className='mt-12 ml-8 p-6 gap-1 cursor-pointer rounded-md shadow-md '
+                  className='mt-12 ml-8  gap-1 cursor-pointer rounded-lg shadow-md '
                 >
                   <div className='w-full h-fit bg-base-300  rounded-md  hover:transition-transform ease-in duration-300 '>
                     <figure>
