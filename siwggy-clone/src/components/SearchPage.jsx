@@ -5,7 +5,7 @@ import { useNavigation } from 'react-router-dom';
 import SearchSuggestions from './SearchSuggestions';
 import Loading from './Loading';
 
-export default function SearchPage() {
+export default function SearchPage({ showSearchPage, setShowSearchPage }) {
   const [resultData, setResultData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [queryData, setQueryData] = useState([]);
@@ -81,7 +81,15 @@ export default function SearchPage() {
       )}
 
       {/* search suggestions */}
-      {isLoading ? <Loading /> : <SearchSuggestions queryData={queryData} />}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <SearchSuggestions
+          queryData={queryData}
+          showSearchPage={showSearchPage}
+          setShowSearchPage={setShowSearchPage}
+        />
+      )}
 
       {/* end of searchSuggestions */}
     </div>

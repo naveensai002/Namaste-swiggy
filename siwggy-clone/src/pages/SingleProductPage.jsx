@@ -87,7 +87,7 @@ export default function SingleProductPage() {
 
   return (
     <>
-      <div className='pl-32 ml-32 pr-24 mr-24 text-xs breadcrumbs tracking-widest '>
+      <div className='pl-24 pt-8 ml-24 pr-24 mr-24 text-xs breadcrumbs tracking-widest '>
         <ul>
           <li className='text-slate-500'>
             <Link to='/'>Home</Link>

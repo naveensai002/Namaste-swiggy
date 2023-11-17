@@ -2,7 +2,11 @@ import React from 'react';
 import { Image_CDN_Url } from '../utils/constant';
 import { Link } from 'react-router-dom';
 
-export default function SearchSuggestions({ queryData }) {
+export default function SearchSuggestions({
+  queryData,
+  setShowSearchPage,
+  showSearchPage,
+}) {
   return (
     <div className='pt-8 flex flex-col gap-y-8 items-center justify-center w-full '>
       {queryData?.suggestions &&
@@ -24,6 +28,7 @@ export default function SearchSuggestions({ queryData }) {
               to={`searchResults/${text}`}
               key={text}
               className='w-3/4 h-32 hover:bg-slate-200 flex shadow-md rounded-md p-4 bg-slate-100 '
+              onClick={() => setShowSearchPage(!showSearchPage)}
             >
               <figure className=''>
                 <img

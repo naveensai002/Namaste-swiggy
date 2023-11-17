@@ -43,7 +43,10 @@ const AppLayout = () => {
       ) : (
         <section>
           {showSearchPage ? (
-            <SearchPage />
+            <SearchPage
+              showSearchPage={showSearchPage}
+              setShowSearchPage={setShowSearchPage}
+            />
           ) : (
             <Outlet context={{ showSearchPage }} />
           )}
