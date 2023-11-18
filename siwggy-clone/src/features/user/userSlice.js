@@ -15,7 +15,7 @@ const getThemeFromLS = () => {
   return theme;
 };
 const getUserFromLS = () => {
-  return JSON.parse(localStorage.getItem('user')) || null;
+  return JSON.parse(localStorage.getItem('user') || null);
 };
 // console.log(getUserFromLS());
 
@@ -43,7 +43,7 @@ const userSlice = createSlice({
     },
     themeToggle: (state) => {
       const { autumn, dark } = themes;
-      state.theme = state.theme === 'dark' ? 'autumn' : 'dark';
+      state.theme = state.theme === dark ? autumn : dark;
       document.documentElement.setAttribute('data-theme', state.theme);
       localStorage.setItem('theme', state.theme);
       toast.success(`theme set to ${state.theme}`);

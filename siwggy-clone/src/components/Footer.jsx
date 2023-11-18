@@ -86,7 +86,7 @@ export default function Footer() {
           <>
             <h1 className='text-xl'>Other cities that we deliver</h1>
             <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-y-3 ml-2 items-center justify-center pt-8'>
-              {citi.map((citiData) => {
+              {citi?.map((citiData) => {
                 const { text, link } = citiData;
                 return (
                   <p
