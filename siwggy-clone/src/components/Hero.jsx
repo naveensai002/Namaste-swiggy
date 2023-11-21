@@ -5,11 +5,12 @@ import fetchData from '../utils/api';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-import {
-  BsFillArrowLeftCircleFill,
-  BsFillArrowRightCircleFill,
-} from 'react-icons/bs';
-import HeroShimmer from '../Shimmer/HeroShimmer';
+// import {
+//   BsFillArrowLeftCircleFill,
+//   BsFillArrowRightCircleFill,
+// } from 'react-icons/bs';
+
+import ShimmerMenu from '../components/ShimmerMenu';
 import Loading from './Loading';
 
 export default function Hero() {
@@ -85,7 +86,7 @@ export default function Hero() {
   return (
     <>
       {loading ? (
-        <Loading />
+        <ShimmerMenu />
       ) : (
         <div className=' pb-12 pl-4 ml-12 mr-12 '>
           <div className='flex flex-row items-center justify-between ml-14'>

@@ -9,6 +9,7 @@ import { TiLocation } from 'react-icons/ti';
 import { Link, useLoaderData } from 'react-router-dom';
 
 import { headerData } from '../utils/constant';
+import ShimmerMenu from '../components/ShimmerMenu';
 
 const {
   id: offerId,

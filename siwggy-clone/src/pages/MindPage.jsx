@@ -6,6 +6,7 @@ import fetchData from '../utils/api';
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import ShimmerMenu from '../components/ShimmerMenu';
 
 export default function MindPage() {
   const user = useSelector((state) => state?.user?.user?.username || 'naveen');
@@ -14,8 +15,6 @@ export default function MindPage() {
   const getWhatsonMind = async () => {
     const response = await fetchData();
     setItems(response?.data?.cards[1]?.card?.card?.imageGridCards?.info);
-    // console.log(response.data.cards[1].card.card.imageGridCards.info);
-    //response.data.cards[1].card.card.imageGridCards.info
   };
 
   useEffect(() => {
@@ -56,6 +55,7 @@ export default function MindPage() {
           dotListClass='custom-dot-list-style'
           itemClass='carousel-item-padding-40-px pb-8 '
         >
+          {!items && <ShimmerMenu />}
           {items &&
             items.map((item) => {
               const { accessibility, action, imageId } = item;

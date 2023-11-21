@@ -13,6 +13,7 @@ import Store from './Store';
 import { SearchPage } from '../components';
 
 import { Loading } from '../components';
+import ShimmerUi from '../components/ShimmerUi';
 
 import fetchData from '../utils/api';
 import { useOutletContext } from 'react-router-dom';
@@ -59,7 +60,7 @@ export default function Landing() {
       ) : (
         <>
           {isLoading ? (
-            <Loading />
+            <ShimmerUi />
           ) : (
             <>
               <Hero />
